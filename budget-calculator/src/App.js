@@ -22,7 +22,7 @@ function App() {
       const remaininBudget = remaining - expense.quantity
       setRemaining(remaininBudget)
 
-      setCreateExpense(true);
+      setCreateExpense(false);
     }
   }, [expense, createExpense, expenses, remaining])
 
