@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
+import { getYearDiff, estimateModel, estimatePlan } from '../helper';
 
 const Field = styled.div`
     display: flex;
@@ -51,7 +53,7 @@ const Error = styled.div`
 `;
 
 
-const Form = () => {
+const Form = ({ setResume, setLoading }) => {
 
     const [data, setData] = useState({
         model: '',
@@ -85,20 +87,29 @@ const Form = () => {
 
         setError(false);
 
-        /////Create object/////
+        let baseValue = 2000;
+
         // obtain difference in years and subtract 3% for each
+        const diffYears = getYearDiff(year);
+        baseValue -= ((diffYears * 3) / 100) * baseValue;
 
         //american +15% - asian +5% - european +30%
+        baseValue *= estimateModel(model);
         
         // basic plan +20% - full plan +50%
-
-        // estimate total
-
+        baseValue = parseFloat(baseValue * estimatePlan(plan)).toFixed(2);
 
         //send to parent and reset form
+        setLoading(true);
 
+        setTimeout(()=>{
+            setLoading(false);
+            setResume({
+                totalQuote: Number(baseValue),
+                data
+            })
+        }, 1500);
     }
-
 
 
     return (
@@ -162,5 +173,10 @@ const Form = () => {
         </form>
     );
 }
+
+Form.propTypes = {
+    setResume: PropTypes.func.isRequired,
+    setLoading: PropTypes.func.isRequired
+};
  
 export default Form;

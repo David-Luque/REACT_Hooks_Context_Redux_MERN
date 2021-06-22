@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
 import Form from './components/Form';
+import Resume from './components/Resume';
+import Result from './components/Result';
+import Spinner from './components/Spinner';
 
 import styled from '@emotion/styled';
 
@@ -15,13 +18,46 @@ const FormComtainer = styled.div`
 `;
 
 function App() {
+
+  const [resume, setResume] = useState({
+    totalQuote: 0,
+    data: {
+      model: '',
+      year: '',
+      plan: ''
+    }
+  });
+
+  const [loading, setLoading] = useState(false);
+
+
+  const { totalQuote, data } = resume;
+
   return (
     <Container className="App">
       <Header
         title= "Insurance calculator"
       />
       <FormComtainer>
-        <Form/>
+        <Form
+          setResume={setResume}
+          setLoading={setLoading}
+        />
+
+        {loading ? <Spinner/> : null}
+
+
+        {!loading && 
+          <Resume
+            data={data}
+          />
+        }
+        
+        {!loading && 
+          <Result
+            totalQuote={totalQuote}
+          />
+        }
       </FormComtainer>
     </Container>
   );
