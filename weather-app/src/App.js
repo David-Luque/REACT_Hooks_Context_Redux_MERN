@@ -19,10 +19,11 @@ function App() {
 
 
   useEffect(()=>{
-    if(requested) {
-      const requestApi = async ()=>{
+    const requestApi = async ()=>{
+      if(requested) {
         const appID = process.env.API_ID;
-        const url = `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${appID}`;
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${appID}`;
+        
         const response = await fetch(url);
         const resultData = await response.json();
   
@@ -30,17 +31,17 @@ function App() {
         setRequested(false);
 
         //detect if there was good result in request
-        if(result.cod === 404) {
+        if(result.cod === "404") {
           setError(true)
         } else {
           setError(false)
         }
-      };
-      requestApi();
+      };      
     }
+    requestApi();
+    //eslint-disable-next-line
   },[requested]);
 
-  
   let component;
   if(error) {
     component = <Error
