@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import styled from '@emotion/styled';
 import useCurrency from '../hooks/useCurrency';
+import useCriptoCurrency from '../hooks/useCriptoCurrency';
+import Error from './Error';
 
 const Button = styled.input`
     margin-top: 20px;
@@ -20,7 +23,10 @@ const Button = styled.input`
     }
 `;
 
-const Form = () => {
+const Form = ({ setCurrecy, setCripto }) => {
+
+    const [criptoList, setCriptoList] = useState([]);
+    const [error, setError] = useState(false);
 
     const CURRENCIES = [
         {code: 'USD', name: 'US Dolar'},
@@ -29,14 +35,47 @@ const Form = () => {
         {code: 'GBP', name: 'British pound sterline'}
     ]
 
-    const [currency, setCurrency, SelectCurrency] = useCurrency('Choose currency', '', CURRENCIES);
+    const [currency, SelectCurrency] = useCurrency('Choose currency', '', CURRENCIES);
+    const [cripto, SelectCripto] = useCriptoCurrency('Choose cripto', '', criptoList);
 
 
-    return (
-        <form>
+    //execute API call
+    useEffect(()=>{
+        const apiCall = async ()=>{
+            const url = `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD`;
+            const result = await axios.get(url)
+
+            setCriptoList(result.data.Data);
+        };
+        apiCall();
+    }, []);
+
+
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        if(currency === '' || cripto === ''){
+            setError(true);
+            return;
+        }
+
+        setError(false)
+        
+        setCurrecy(currency)
+        setCripto(cripto)
+        
+    };
+
+
+    return ( 
+        <form
+            onSubmit={handleSubmit}
+        >
+
+            {error ? <Error message="All fields are required" /> : null}
 
             <SelectCurrency/>
-
+            <SelectCripto/>
             <Button
                 type="submit"
                 value="Convert"

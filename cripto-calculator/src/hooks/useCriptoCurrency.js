@@ -21,27 +21,29 @@ const Select = styled.select`
     font-size: 1.2rem;
 `;
 
-const useCurrency = (label, initialState, options)=>{
+const useCriptoCurrency = (label, initialState, options)=>{
+
+    //console.log(options)
 
     //custom hook state
     const [state, setState] = useState(initialState)
     
-    const SelecCurrency = ()=>(
+    const SelectCripto = ()=>(
         <Fragment>
             <Label>{label}</Label>
             <Select
                 onChange={ e => setState(e.target.value)}
                 value={state}
             >
-                <option value="">-- Select currency --</option>
+                <option value="">-- Select cripto --</option>
                 {options.map(option => (
-                    <option key={option.code} value={option.code}>{option.name}</option>
+                    <option key={option.CoinInfo.Id} value={option.CoinInfo.Name}>{option.CoinInfo.FullName}</option>
                 ))}
             </Select>
         </Fragment>
     );
 
-    return [state, SelecCurrency];
+    return [state, SelectCripto];
 };
 
-export default useCurrency;
+export default useCriptoCurrency;

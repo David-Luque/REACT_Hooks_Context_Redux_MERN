@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
+import axios from 'axios';
 import image from './cryptos.png';
 import Form from './components/Form';
+import Quote from './components/Quote';
+import Spinner from './components/Spinner';
+
 
 const Container = styled.div`
   max-width: 900px;
@@ -39,6 +43,36 @@ const Heading = styled.h1`
 
 
 function App() {
+
+  const [currency, setCurrecy] = useState('');
+  const [cripto, setCripto] = useState('');
+  const [result, setResult] = useState({});
+  const [loading, setLoading] = useState(false)
+
+  useEffect(()=>{
+    const sendRequest = async ()=>{
+      if(currency === '' || cripto === '') return;
+
+      const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cripto}&tsyms=${currency}`
+      const result = await axios.get(url);
+      
+      //show spinner
+      setLoading(true);
+
+      //hide spinner and show result
+      setTimeout(()=>{
+        setLoading(false)
+        setResult(result.data.DISPLAY[cripto][currency]);
+      }, 2000);
+    };
+
+    sendRequest();
+
+  }, [currency, cripto]);
+
+
+  const component = (loading) ? <Spinner/> : <Quote result={result} /> ;
+
   return (
     <Container className="App">
       <div>
@@ -50,7 +84,13 @@ function App() {
       <div>
         <Heading>Cryptocurrency trading values</Heading>
 
-        <Form />
+        <Form
+          setCurrecy={setCurrecy}
+          setCripto={setCripto}
+        />
+
+        {component}
+
       </div>
     </Container>
   );
