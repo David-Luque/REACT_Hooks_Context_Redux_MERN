@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import useCurrency from '../hooks/useCurrency';
 import useCriptoCurrency from '../hooks/useCriptoCurrency';
 import Error from './Error';
+import PropTypes from 'prop-types';
 
 const Button = styled.input`
     margin-top: 20px;
@@ -60,7 +61,7 @@ const Form = ({ setCurrecy, setCripto }) => {
         }
 
         setError(false)
-        
+
         setCurrecy(currency)
         setCripto(cripto)
         
@@ -82,6 +83,11 @@ const Form = ({ setCurrecy, setCripto }) => {
             />
         </form>
     );
+}
+
+Form.propTypes = {
+    setCurrecy: PropTypes.func.isRequired,
+    setCripto: PropTypes.func.isRequired
 }
  
 export default Form;
