@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import Form from './components/Form';
 
 function App() {
+
+  const [search, setSearch] = useState('');
+  const [results, setResults] = useState([]);
+
+
+  useEffect(()=>{
+    
+    const apiCall = async ()=>{
+      if(search === '') return;
+
+      const imagesPerPage = 30;
+      const key = "22305269-d88317b4a6fea00b1a1629c2f";
+      const url = `https://pixabay.com/api/?key=${key}&q=${search}&per_page=${imagesPerPage}`
+
+      const response = await fetch(url);
+      const result = await response.json();
+
+      setResults(result.hits)
+    };
+
+    apiCall();
+
+  }, [search]);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="jumbotron">
+        <p className="lead text-center">Image searcher</p>
+        <Form setSearch={setSearch}/>
+      </div>
     </div>
   );
 }
