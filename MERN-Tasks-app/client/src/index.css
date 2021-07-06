@@ -71,7 +71,7 @@ a {
 .btn-primary:hover {
   background: var(--gris3);
 }
-.btn-secundario {
+.btn-secondary {
   background-color: var(--gris1);
 }
 .btn-block {
@@ -89,7 +89,7 @@ a {
 }
 
 @media (min-width: 768px) {
-  .contenedor-app {
+  .container-app {
       display: flex;
       min-height: 100vh;
   }
@@ -98,7 +98,7 @@ a {
       background-color: var(--blanco);
       flex: 0 0 300px;
   }
-  .seccion-principal {
+  .main-section {
       flex: 1;
   }
 
@@ -110,24 +110,24 @@ aside  {
   padding: 3rem;
 }
 
-.formulario-nuevo-proyecto {
+.form-new-project {
   margin-top: 6rem;
 }
-.formulario-nuevo-proyecto .input-text {
+.form-new-project .input-text {
   border-bottom: 1px solid var(--gris2);
   border-radius: 0;
   background-color: var(--gris1);
 }
-.formulario-nuevo-proyecto .input-text::placeholder{
+.form-new-project .input-text::placeholder{
   color: var(--gris2);
 }
-.proyectos {
+.projects {
   margin-top: 10rem;
 }
-.listado-proyectos li {
+.list-projects li {
   margin-bottom: 2rem;
 }
-.listado-proyectos li a {
+.list-projects li a {
   font-size: 1.4rem;
   color: var(--gris2);
   line-height: 1.5;
@@ -139,35 +139,35 @@ aside  {
   background-color: var(--gris2);
   padding: 4rem;
 }
-.nombre-usuario {
+.user-name {
   color: var(--blanco);
   font-size: 2.2rem;
   margin: 0;
 }
-.nombre-usuario span {
+.user-name span {
   font-weight: 900;
 }
-.nav-principal a {
+.nav-main a {
   color: var(--blanco);
   text-decoration: none;
 }
-.nav-principal a:first-of-type {
+.nav-main a:first-of-type {
   margin-right: 2rem;
 }
 
 /** Formulario crear y editar tareas **/
-.formulario {
+.form {
   background-color: var(--gris3);
   padding: 4rem;
 }
-.formulario form {
+.form form {
   max-width: 600px;
   margin: 0 auto;
 }
-.contenedor-input {
+.container-input {
   display: flex;
 }
-.contenedor-input label {
+.container-input label {
   margin-bottom: 1rem;
   color: var(--blanco);
 }
@@ -180,18 +180,18 @@ aside  {
 }
 
 /** TAREAS LISTADO **/
-.contenedor-tareas {
+.container-tasks {
   padding: 4rem;
 }
 
 
 
-.listado-tareas {
+.list-tasks {
   max-width: 600px;
   margin: 0 auto;
 }
 
-.tarea {
+.task {
   display: flex;
   justify-content: space-between;
   background-color: var(--blanco);
@@ -201,7 +201,7 @@ aside  {
   border-radius: .5rem;
 
 }
-.sombra {
+.shadow {
   -webkit-box-shadow: 0px 4px 10px -3px rgba(117,117,117,1);
   -moz-box-shadow: 0px 4px 10px -3px rgba(117,117,117,1);
   box-shadow: 0px 4px 10px -3px rgba(117,117,117,1);

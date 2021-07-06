@@ -45,7 +45,7 @@ const NewAccount = () => {
                     <div className="field-form">
                         <label htmlFor="username">Username</label>
                         <input
-                            type="username"
+                            type="text"
                             id="username"
                             name="username"
                             placeholder="Your username"
@@ -81,7 +81,7 @@ const NewAccount = () => {
                     <div className="field-form">
                         <label htmlFor="second_password">Confirm password</label>
                         <input
-                            type="second_password"
+                            type="password"
                             id="second_password"
                             name="second_password"
                             placeholder="Repeat your password"
