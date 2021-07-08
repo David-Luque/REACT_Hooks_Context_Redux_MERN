@@ -1,0 +1,3 @@
+export const NEW_PROJECT_FORM = 'NEW_PROJECT_FORM';
+export const OBTAIN_PROJECTS = 'OBTAIN_PROJECTS';
+export const ADD_PROJECT = 'ADD_PROJECT';

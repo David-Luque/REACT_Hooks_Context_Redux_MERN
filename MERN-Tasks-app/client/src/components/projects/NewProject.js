@@ -1,6 +1,12 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
+import projectContext from '../../context/projects/projectContext';
 
 const NewProject = () => {
+
+    //obtain form state
+    const projectsContext = useContext(projectContext);
+    const { form, showForm, addProject } = projectsContext
+
 
     const [project, setProject] = useState({
         name: ''
@@ -20,10 +26,15 @@ const NewProject = () => {
         e.preventDefault();
         
         //validate
+        if(name === '') return;
 
         //aggregate to state
+        addProject(project)
 
         //restart form
+        setProject({
+            name: ''
+        })
     };
 
 
@@ -32,29 +43,33 @@ const NewProject = () => {
             <button
                 type="button"
                 className="btn btn-block btn-primary"
+                onClick={()=> {showForm()}}
             >
                 New project
             </button>
 
-            <form
-                className="form-new-project"
-                onSubmit={handleSubmit}
-            >
-                <input
-                    type="text"
-                    name="name"
-                    className="input-text"
-                    placeholder="Project name"
-                    value={name}
-                    onChange={handleChange}
-                />
-                
-                <input
-                    type="submit"
-                    className="btn btn-block btn-primary"
-                    value="Add project"
-                />
-            </form>
+            { form ? (
+                <form
+                    className="form-new-project"
+                    onSubmit={handleSubmit}
+                >
+                    <input
+                        type="text"
+                        name="name"
+                        className="input-text"
+                        placeholder="Project name"
+                        value={name}
+                        onChange={handleChange}
+                    />
+                    
+                    <input
+                        type="submit"
+                        className="btn btn-block btn-primary"
+                        value="Add project"
+                    />
+                </form>
+            ) : null
+            }
         </Fragment>  
     );
 }
