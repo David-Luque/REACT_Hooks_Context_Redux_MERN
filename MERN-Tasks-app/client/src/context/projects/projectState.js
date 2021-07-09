@@ -5,7 +5,10 @@ import projectReducer from './projectReducer';
 import { 
     NEW_PROJECT_FORM, 
     OBTAIN_PROJECTS,
-    ADD_PROJECT
+    ADD_PROJECT,
+    VALIDATE_FORM,
+    ACTUAL_PROJECT,
+    DELETE_PROJECT
 } from '../../types/index';
 
 
@@ -22,7 +25,9 @@ const ProjectState = props => {
 
     const initialState = {
         projects: [],
-        form : false
+        form : false,
+        formError: false,
+        project: null
     }
 
     //dispatch to execute actions
@@ -47,11 +52,36 @@ const ProjectState = props => {
     const addProject = project => {
         project.id = uuidv4();
 
+        //insert project in state
         dispatch({
             type: ADD_PROJECT,
             payload: project
         });
     };
+
+    //validate form errors
+    const showError = ()=>{
+        dispatch({
+            type: VALIDATE_FORM
+        });
+    };
+
+    //select the project choosen by user
+    const getActualProject = project => {
+        dispatch({
+            type: ACTUAL_PROJECT,
+            payload: project
+        })
+    };
+
+    //delete any project
+    const deleteProject = projectId => {
+        dispatch({
+            type: DELETE_PROJECT,
+            payload: projectId
+        })
+    }
+
 
 
     return(
@@ -59,9 +89,14 @@ const ProjectState = props => {
             value={{
                 projects: state.projects,
                 form: state.form,
+                formError: state.formError,
+                project: state.project,
                 showForm,
                 getProjects,
-                addProject
+                addProject,
+                showError,
+                getActualProject,
+                deleteProject
             }}
         >
             {props.children}
