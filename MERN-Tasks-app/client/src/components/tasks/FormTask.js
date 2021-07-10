@@ -8,12 +8,29 @@ const FormTask = () => {
 
     if(!project) return null;
 
+    console.log(project)
+
     const [ actualProject ] = project;
+
+
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        //validate
+
+        //pass validation
+
+        //aggregate to task state
+
+        //restart form
+    };
 
 
     return (
         <div className="form">
-            <form>
+            <form
+                onSubmit={handleSubmit}
+            >
                 <div className="container-input">
                     <input
                         type="text"

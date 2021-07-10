@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Task = ({ task }) => {
+const Task = ({ taskInfo }) => {
     return (
         <li className="task shadow">
-            <p>{task.name}</p>
+            <p>{taskInfo.name}</p>
 
             <div className="status">
-                {task.status
+                {taskInfo.status
                     ? (
                         <button
                         type="button"

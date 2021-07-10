@@ -1,31 +1,40 @@
 import React, { Fragment, useContext } from 'react';
 import Task from './Task';
 import projectContext from '../../context/projects/projectContext';
+import taskContext from '../../context/tasks/taskContext';
 
 const ListTask = () => {
 
+    //obtain project from initial state
     const projectsContext = useContext(projectContext);
     const { project, deleteProject } = projectsContext;
+
+    //obtain project tasks
+    const tasksContext = useContext(taskContext);
+    const { projectTasks } = tasksContext;
 
     if(!project) return <h2>Select any project</h2>;
 
     const [ actualProject ] = project;
 
+
     const deleteCurrentProject = ()=>{
         deleteProject(actualProject.id)
     };
+    
 
     return (
         <Fragment>
             <h2>Project: {actualProject.name}</h2>
-            {/* <ul className="list-tasks">
+            <ul className="list-tasks">
                 {projectTasks.length === 0
-                    ? (<li className="task"> <p>No peanding tasks</p> </li>)
-                    : projectTasks.map(task => (
-                        <Task taskInfo={task} />
+                    ? (<li className="task"> <p>No pending tasks</p> </li>)
+                    : projectTasks.map((task, index) => (
+                        //console.log(task)
+                        <Task key={index} taskInfo={task} />
                     ))
                 }
-            </ul> */}
+            </ul>
 
             <button
                 type="button"

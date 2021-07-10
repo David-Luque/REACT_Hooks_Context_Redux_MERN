@@ -1,10 +1,21 @@
 import React, { useContext } from 'react';
-import projectContext from '../../context/projects/projectContext';
+import ProjectContext from '../../context/projects/projectContext';
+import taskContext from '../../context/tasks/taskContext';
 
 const Project = ({ projectInfo }) => {
-
-    const projectsContext = useContext(projectContext);
+    //obtain projects context functions and state
+    const projectsContext = useContext(ProjectContext);
     const { getActualProject } = projectsContext;
+
+    //obtain task context functions and state
+    const tasksContext = useContext(taskContext)
+    const { getTasks } = tasksContext;
+
+    //funtion to aggregate actual project and their tasks
+    const selectProject = id => {
+        getActualProject(id)  // set actual project
+        getTasks(id)          // filter project tasks when user clicks
+    };
 
 
     return (
@@ -12,7 +23,7 @@ const Project = ({ projectInfo }) => {
             <button
                 type="button"
                 className="btn btn-blank"
-                onClick={()=>{getActualProject(projectInfo.id)}}
+                onClick={()=>{selectProject(projectInfo.id)}}
             >
                 {projectInfo.name}
             </button>
