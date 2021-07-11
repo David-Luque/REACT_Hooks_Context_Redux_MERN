@@ -1,12 +1,30 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import taskContext from '../../context/tasks/taskContext';
+import projectContext from '../../context/projects/projectContext';
 
 const Task = ({ taskInfo }) => {
+
+    const tasksContext = useContext(taskContext);
+    const { deleteTask, getTasks } = tasksContext;
+
+    const projectsContext = useContext(projectContext);
+    const { project } = projectsContext;
+
+    const [ actualProject ] = project;
+
+    
+    const removeTask = id => {
+        deleteTask(id)
+        getTasks(actualProject.id)
+    };
+
+
     return (
         <li className="task shadow">
             <p>{taskInfo.name}</p>
 
             <div className="status">
-                {taskInfo.status
+                {taskInfo.isCompleted
                     ? (
                         <button
                         type="button"
@@ -35,6 +53,7 @@ const Task = ({ taskInfo }) => {
                 <button
                     type="button"
                     className="btn btn-secondary"
+                    onClick={() => removeTask(taskInfo.id)}
                 >
                     Delete
                 </button>
