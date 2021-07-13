@@ -9,3 +9,7 @@ export const PROJECT_TASKS = 'PROJECT_TASKS';
 export const ADD_TASKS = 'ADD_TASKS';
 export const VALIDATE_TASK = 'VALIDATE_TASK';
 export const DELETE_TASK = 'DELETE_TASK';
+export const UPDATE_TASK = 'UPDATE_TASK';
+export const SELECT_TASK = 'SELECT_TASK';
+export const EDIT_TASK = 'EDIT_TASK';
+export const CLEAN_TASK = 'CLEAN_TASK';

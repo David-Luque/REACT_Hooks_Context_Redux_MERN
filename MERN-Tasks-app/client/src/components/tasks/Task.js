@@ -5,7 +5,7 @@ import projectContext from '../../context/projects/projectContext';
 const Task = ({ taskInfo }) => {
 
     const tasksContext = useContext(taskContext);
-    const { deleteTask, getTasks } = tasksContext;
+    const { deleteTask, getTasks, updateTask, selectTask } = tasksContext;
 
     const projectsContext = useContext(projectContext);
     const { project } = projectsContext;
@@ -18,6 +18,15 @@ const Task = ({ taskInfo }) => {
         getTasks(actualProject.id)
     };
 
+    const changeTaskState = task => {
+        task.isCompleted = !task.isCompleted
+        updateTask(task);
+    };
+
+    const addTaskToEdit = task => {
+        selectTask(task)
+    };
+
 
     return (
         <li className="task shadow">
@@ -27,16 +36,18 @@ const Task = ({ taskInfo }) => {
                 {taskInfo.isCompleted
                     ? (
                         <button
-                        type="button"
+                            type="button"
                             className="complete"
+                            onClick={()=>{changeTaskState(taskInfo)}}
                         >
                             Complete
                         </button>
                     )
                     : (
                         <button
-                        type="button"
+                            type="button"
                             className="incomplete"
+                            onClick={()=>{changeTaskState(taskInfo)}}
                         >
                             Incomplete
                         </button>
@@ -47,9 +58,11 @@ const Task = ({ taskInfo }) => {
                 <button
                     type="button"
                     className="btn btn-primary"
+                    onClick={() => {addTaskToEdit(taskInfo)}}
                 >
                     Edit
                 </button>
+                
                 <button
                     type="button"
                     className="btn btn-secondary"

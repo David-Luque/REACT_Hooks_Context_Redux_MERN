@@ -1,0 +1,23 @@
+const express = require('express');
+const connectDB = require('./config/db');
+
+//create server
+const app = express();
+
+//connect to dababase
+connectDB();
+
+//enable express.json
+app.use(express.json({ extended: true }));
+
+// app port
+const PORT = process.env.PORT || 4000;
+
+//import routes
+app.use("/api/users", require('./routes/users'));
+
+
+// start the app
+app.listen(PORT, ()=>{
+    console.log(`Server listening in port ${PORT}`)
+});
