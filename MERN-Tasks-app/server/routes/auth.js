@@ -4,7 +4,7 @@ const router = express.Router();
 const { check } = require('express-validator');
 const authController = require('../controllers/authController');
 
-//route to create user
+//route to autorice user
 router.post('/',
     [
         check('email', "Select a valid email").isEmail(),
