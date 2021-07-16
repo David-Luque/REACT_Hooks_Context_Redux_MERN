@@ -16,7 +16,7 @@ exports.createProject = async (req, res)=>{
         //save owner by JWT
         project.owner = req.user.id
 
-        project.save();
+        await project.save();
 
         res.json(project)
 
