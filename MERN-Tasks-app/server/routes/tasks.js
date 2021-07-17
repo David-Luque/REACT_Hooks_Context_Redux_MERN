@@ -9,7 +9,7 @@ router.post('/',
     auth,
     [
         check('name', 'Task name is required').not().isEmpty(),
-        check('projectId', 'Task project is required').not().isEmpty()
+        check('project', 'Task project is required').not().isEmpty()
     ], 
     taskController.createTask
 )
