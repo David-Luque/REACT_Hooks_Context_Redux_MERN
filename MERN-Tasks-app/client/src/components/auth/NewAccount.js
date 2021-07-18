@@ -1,24 +1,36 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import AlertContext from '../../context/alerts/alertContext';
+import AuthContext from '../../context/autentication/authContext';
 
 
-
-const NewAccount = () => {
+const NewAccount = (props) => {
 
     //extract context values
     const alertContext = useContext(AlertContext);
     const { alert, showAlert } = alertContext;
 
+    const authContext = useContext(AuthContext);
+    const { message, authenticated, registerUser } = authContext;
+
+    // authenticated user, registered or duplicate registration
+    useEffect(()=>{
+        if(authenticated) {
+            props.history.push('/projects')
+        }
+        if(message) {
+            showAlert(message.msg, message.category )
+        }
+    }, [message, authenticated, props.history]);
 
 
     const [user, setUser] = useState({
-        username: '',
+        name: '',
         email: '',
         password: '',
         second_password: ''
     });
-    const { username, email, password, second_password } = user
+    const { name, email, password, second_password } = user
 
     const handleChange = e => {
         const { name, value } = e.target;
@@ -33,7 +45,7 @@ const NewAccount = () => {
 
         //validate empty fields
         if(
-            username.trim() === '' ||
+            name.trim() === '' ||
             email.trim() === '' ||
             password.trim() === '' ||
             second_password.trim() === ''
@@ -52,7 +64,11 @@ const NewAccount = () => {
         }
 
         //pass to "action"
-
+        registerUser({
+            name,
+            email,
+            password
+        })
     };
 
 
@@ -76,13 +92,13 @@ const NewAccount = () => {
                 >
 
                     <div className="field-form">
-                        <label htmlFor="username">Username</label>
+                        <label htmlFor="name">Username</label>
                         <input
                             type="text"
-                            id="username"
-                            name="username"
+                            id="name"
+                            name="name"
                             placeholder="Your username"
-                            value={username}
+                            value={name}
                             onChange={handleChange}
                         />
                     </div>

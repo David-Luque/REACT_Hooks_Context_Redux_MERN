@@ -16,3 +16,10 @@ export const CLEAN_TASK = 'CLEAN_TASK';
 
 export const SHOW_ALERT = 'SHOW_ALERT';
 export const HIDE_ALERT = 'HIDE_ALERT';
+
+export const SUCCESS_REGIST = 'SUCCESS_REGIST';
+export const FAILURE_REGIST = 'FAILURE_REGIST';
+export const GET_USER = 'GET_USER';
+export const SUCCESS_LOGIN = 'SUCCESS_LOGIN';
+export const FAILURE_LOGIN = 'FAILURE_LOGIN';
+export const CLOSE_SESSION = 'CLOSE_SESSION';
