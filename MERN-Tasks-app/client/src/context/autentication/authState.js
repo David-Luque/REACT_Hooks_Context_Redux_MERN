@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import AuthContext from './authContext';
 import authReducer from './authReducer';
 import axiosClient from '../../config/axios';
+import tokenAuth from '../../config/tokenAuth';
 
 import {
     SUCCESS_REGIST,
@@ -28,12 +29,13 @@ const AuthState = ({ children }) => {
     const registerUser = async data => {
         try {
             const response = await axiosClient.post('/api/users', data);
-            console.log(response);
+            console.log(response.data);
             dispatch({
                 type: SUCCESS_REGIST,
                 payload: response.data
             });
-            
+            //get user
+            authenticateUser();
         } catch (error) {
             console.log(error.response);
             const alert = {
@@ -43,6 +45,28 @@ const AuthState = ({ children }) => {
             dispatch({
                 type: FAILURE_REGIST,
                 payload: alert
+            });
+        }
+    };
+
+    //return authenticated user
+    const authenticateUser = async ()=>{
+        const token = localStorage.getItem('token');
+        if(token) {
+            tokenAuth(token);
+        }
+
+        try {
+            const response = await axiosClient.get('/api/auth');
+            console.log(response);
+            dispatch({
+                type: GET_USER,
+                payload: response.data.user
+            });
+        } catch (error) {
+            console.log(error.response);
+            dispatch({
+                type: FAILURE_LOGIN
             });
         }
     };

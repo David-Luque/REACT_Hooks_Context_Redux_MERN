@@ -6,7 +6,7 @@ module.exports = function(req, res, next) {
 
     //check if no token
     if(!token) {
-        res.status(401).json({ msg: "Ivalid permission " })
+        res.status(401).json({ msg: "Invalid permission " })
     }
 
     //validate token

@@ -10,6 +10,8 @@ import {
 export default (state, action)=>{
     switch(action.type) {
         case FAILURE_REGIST:
+        case FAILURE_LOGIN:
+            localStorage.removeItem('token');
             return {
                 ...state,
                 token: null,
@@ -22,6 +24,12 @@ export default (state, action)=>{
                 authenticated: true,
                 message: null
             }
+        case GET_USER:
+            return {
+                ...state,
+                user: action.payload
+            }
+
         default:
             return state;
     }

@@ -48,3 +48,14 @@ exports.authenticateUser = async (req, res)=>{
         console.log(error)
     }
 };
+
+//obtain that user is authenticated
+exports.authenticatedUser = async (req, res)=>{
+    try {
+        const user = await User.findById(req.user.id).select('-password');
+        res.json({ user })
+    } catch (error) { 
+        console.log(error);
+        res.status(500).send({ msg: "There was an error" });
+    }
+};
