@@ -3,7 +3,6 @@ import AuthContext from './authContext';
 import authReducer from './authReducer';
 import axiosClient from '../../config/axios';
 import tokenAuth from '../../config/tokenAuth';
-
 import {
     SUCCESS_REGIST,
     FAILURE_REGIST,
@@ -19,7 +18,8 @@ const AuthState = ({ children }) => {
         token: localStorage.getItem('token'),
         authenticated: null,
         user: null,
-        message: null
+        message: null,
+        loading: true
     }
 
     const [state, dispatch] = useReducer(authReducer, initialState) 
@@ -71,6 +71,37 @@ const AuthState = ({ children }) => {
         }
     };
 
+    //when user login
+    const sessionLogin = async data => {
+        try {
+            const response = await axiosClient.post('/api/auth', data);
+            console.log(response)
+            dispatch({
+                type: SUCCESS_LOGIN,
+                payload: response.data
+            });
+            //get user
+            authenticateUser();
+        } catch (error) {
+            console.log(error.response);
+            const alert = {
+                msg: error.response.data.msg,
+                category: 'alert-error'
+            }
+            dispatch({
+                type: FAILURE_LOGIN,
+                payload: alert
+            });
+        }
+    };
+
+    //close user session
+    const closeSession = ()=>{
+        dispatch({
+            type: CLOSE_SESSION
+        });
+    };
+
 
     return (
         <AuthContext.Provider
@@ -79,7 +110,11 @@ const AuthState = ({ children }) => {
                 authenticated: state.authenticated,
                 user: state.user,
                 message: state.message,
-                registerUser
+                loading: state.loading,
+                registerUser,
+                sessionLogin,
+                authenticateUser,
+                closeSession 
             }}
         >
             {children}

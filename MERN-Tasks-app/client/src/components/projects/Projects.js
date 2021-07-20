@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import Sidebar from '../layout/Sidebar';
 import Header from '../layout/Header';
 import FormTask from '../tasks/FormTask';
 import ListTask from '../tasks/ListTask';
+import AuthContext from '../../context/autentication/authContext';
 
 const Projects = () => {
+
+    //extract authentication info
+    const authContext = useContext(AuthContext);
+    const { authenticateUser } = authContext;
+
+    useEffect(()=>{
+        authenticateUser();
+    }, []);
+
     return (
         <div className="container-app">
             
