@@ -20,7 +20,7 @@ const ListTask = () => {
 
 
     const deleteCurrentProject = ()=>{
-        deleteProject(actualProject.id)
+        deleteProject(actualProject._id)
     };
     
 
