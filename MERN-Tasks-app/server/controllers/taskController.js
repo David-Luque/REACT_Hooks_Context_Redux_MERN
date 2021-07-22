@@ -35,7 +35,7 @@ exports.createTask = async (req, res)=>{
 // get all tasks
 exports.getTasks = async (req, res)=>{
     try {
-        const { project } = req.body;
+        const { project } = req.query; //because we sent "{params: { project }}"
 
         //check if project exist
         const projectFromDB = await Project.findById(project);
@@ -78,9 +78,8 @@ exports.updateTask = async (req, res)=>{
         
         //create new task with new info
         const newTask = {};
-        if(name) newTask.name = name;
-        if(isCompleted) newTask.isCompleted = isCompleted;
-        
+        newTask.name = name;
+        newTask.isCompleted = isCompleted;
         //save task
         const task = await Task.findOneAndUpdate({_id: req.params.id}, newTask, { new: true });
         res.json({ task });
@@ -94,7 +93,7 @@ exports.updateTask = async (req, res)=>{
 //delete task
 exports.deleteTask = async (req, res)=>{
     try {
-        const { project } = req.body;
+        const { project } = req.query;
 
         //check if task exist
         const taskInDB = await Task.findById(req.params.id);

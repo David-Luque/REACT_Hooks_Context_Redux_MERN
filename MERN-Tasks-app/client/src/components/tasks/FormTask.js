@@ -8,7 +8,7 @@ const FormTask = () => {
     const { project } = projectsContext;
     //task context
     const tasksContext = useContext(taskContext);
-    const { selectedTask, taskError, getTasks, createTask, validateTask, editTask, cleanTask } = tasksContext;
+    const { selectedTask, taskError, getTasks, createTask, validateTask, updateTask, cleanTask } = tasksContext;
 
     //effect to detect if there is a selected task
     useEffect(()=>{
@@ -56,12 +56,11 @@ const FormTask = () => {
         //check if editing or creating task
         if(selectedTask === null) {
             //create new task
-            task.projectId = actualProject.id;
-            task.isCompleted = false;
+            task.project = actualProject._id;
             createTask(task);            
         } else {
             //edit existing task
-            editTask(task);
+            updateTask(task);
             //clean task from state
             cleanTask();
         }
