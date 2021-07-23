@@ -6,7 +6,7 @@ import AuthContext from '../../context/autentication/authContext';
 const Login = (props) => {
 
     const authContext = useContext(AuthContext);
-    const { message, authenticated,  sessionLogin } = authContext;
+    const { message, authenticated, sessionLogin } = authContext;
 
     const alertContext = useContext(AlertContext);
     const { alert, showAlert } = alertContext;
@@ -17,7 +17,7 @@ const Login = (props) => {
             props.history.push('/projects')
         }
         if(message) {
-            showAlert(message.msg, message.category )
+            showAlert(message.msg, message.category)
         }
         //eslint-disable-next-line
     }, [message, authenticated, props.history]);
@@ -43,8 +43,8 @@ const Login = (props) => {
 
         //validate empty fields
         if(email.trim() === '' || password.trim() === '') {
-            showAlert('All fields are required', 'alert-error')
-        }
+            return showAlert('All fields are required', 'alert-error');
+        };
 
         //pass to "action"
         sessionLogin({

@@ -66,7 +66,7 @@ const FormTask = () => {
         }
 
         //obtain updated tasks from actual project
-        getTasks(actualProject.id)
+        getTasks(actualProject._id)
 
         //restart form
         setTask({

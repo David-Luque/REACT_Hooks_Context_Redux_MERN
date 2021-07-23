@@ -83,10 +83,18 @@ const AuthState = ({ children }) => {
             //get user
             authenticateUser();
         } catch (error) {
-            console.log(error.response);
-            const alert = {
-                msg: error.response.data.msg,
-                category: 'alert-error'
+            //console.log(error.response);
+            let alert;
+            if(error.response.data.msg) {
+                alert = {
+                    msg: error.response.data.msg,
+                    category: 'alert-error'
+                }
+            } else {
+                alert = {
+                    msg: error.response.data.errors[0].msg,
+                    category: 'alert-error'
+                }
             }
             dispatch({
                 type: FAILURE_LOGIN,
