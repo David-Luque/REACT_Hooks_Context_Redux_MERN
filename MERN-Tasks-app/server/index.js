@@ -9,13 +9,17 @@ const app = express();
 connectDB();
 
 //enable cors
+// app.use(cors({
+//     origin: [process.env.FRONTEND_POINT, "http://localhost:3000" ]
+// }));
 app.use(cors());
+
 
 //enable express.json
 app.use(express.json({ extended: true }));
 
 // app port
-const PORT = process.env.PORT || 4000;
+const port = process.env.PORT || 4000;
 
 //import routes
 app.use("/api/users", require('./routes/users'));
@@ -25,6 +29,6 @@ app.use("/api/tasks", require('./routes/tasks'));
 
 
 // start the app
-app.listen(PORT, ()=>{
-    console.log(`Server listening in port ${PORT}`)
+app.listen(port, '0.0.0.0', ()=>{
+    console.log(`Server listening in port ${port}`)
 });
