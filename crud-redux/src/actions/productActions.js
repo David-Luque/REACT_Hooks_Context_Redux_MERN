@@ -43,13 +43,13 @@ export function createNewProductAction(product) {
 const addProduct = ()=>({
     type: ADD_PRODUCT,
     payload: true
-})
+});
 
 //if product are saved in database
 const addProductSuccess = product => ({
     type: ADD_PRODUCT_SUCCESS,
     payload: product
-})
+});
 
 //if any error
 const addProductError = status =>({
@@ -57,19 +57,33 @@ const addProductError = status =>({
     payload: status
 });
 
+
 //FUNCTION TO OBTAIN PRODUCTS DATA FROM DB
 export function getProductsAction() {
     return async (dispatch) => {
         dispatch(downloadProducts());
         try {
-            
+            const response = await axiosClient.get('/products');
+            //console.log(response.data);
+            dispatch(downloadProductsSuccess(response.data))
         } catch (error) {
-            
+            //console.log(error);
+            dispatch(downloadProductsError())
         }
     };
 };
 
 const downloadProducts = () => ({
     type: START_GET_PRODUCTS,
+    payload: true
+});
+
+const downloadProductsSuccess = products => ({
+    type: GET_PRODUCTS_SUCCESS,
+    payload: products
+});
+
+const downloadProductsError = ()=>({
+    type: GET_PRODUCTS_ERROR,
     payload: true
 });
