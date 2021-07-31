@@ -26,49 +26,9 @@
       "id": 5
     },
     {
-      "name": "bananas",
-      "price": 23,
-      "id": 6
-    },
-    {
-      "name": "herr",
-      "price": 12,
-      "id": 7
-    },
-    {
-      "name": "herr",
-      "price": 12,
-      "id": 8
-    },
-    {
-      "name": "herr",
-      "price": 12,
-      "id": 9
-    },
-    {
-      "name": "3ed",
-      "price": 3,
-      "id": 10
-    },
-    {
-      "name": "3ed",
-      "price": 3,
-      "id": 11
-    },
-    {
-      "name": "3ed",
-      "price": 3,
-      "id": 12
-    },
-    {
       "name": "coco juice",
       "price": 12,
       "id": 13
-    },
-    {
-      "name": "chocolate",
-      "price": 1324,
-      "id": 14
     }
   ]
 }
