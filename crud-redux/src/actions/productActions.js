@@ -7,7 +7,11 @@ import {
     GET_PRODUCTS_ERROR,
     GET_DELETE_PRODUCT,
     DELETED_PRODUCT_SUCCESS,
-    DELETED_PRODUCT_ERROR
+    DELETED_PRODUCT_ERROR,
+    GET_EDIT_PRODUCT,
+    START_EDIT_PRODUCT,
+    EDITED_PRODUCT_SUCCESS,
+    EDITED_PRODUCT_ERROR
 } from '../types';
 import axiosClient from '../config/axios';
 import Swal from 'sweetalert2';
@@ -47,13 +51,11 @@ const addProduct = ()=>({
     type: ADD_PRODUCT,
     payload: true
 });
-
 //if product are saved in database
 const addProductSuccess = product => ({
     type: ADD_PRODUCT_SUCCESS,
     payload: product
 });
-
 //if any error
 const addProductError = status =>({
     type: ADD_PRODUCT_ERROR,
@@ -80,16 +82,15 @@ const downloadProducts = () => ({
     type: START_GET_PRODUCTS,
     payload: true
 });
-
 const downloadProductsSuccess = products => ({
     type: GET_PRODUCTS_SUCCESS,
     payload: products
 });
-
 const downloadProductsError = ()=>({
     type: GET_PRODUCTS_ERROR,
     payload: true
 });
+
 
 //FUNCTION TO SELECT AND DELETE PRODUCT
 export function deleteProductAction(id) {
@@ -116,12 +117,49 @@ const getDeleteProduct = id => ({
     type: GET_DELETE_PRODUCT,
     payload: id
 });
-
 const deletedProductSuccess = ()=>({
     type: DELETED_PRODUCT_SUCCESS
 });
-
 const deletedProductError = ()=>({
     type: DELETED_PRODUCT_ERROR,
     payload: true
+});
+
+
+//FUNCTION TO SET PRODUCT FOR EDIT
+export function getProductEdit(product) {
+    return (dispatch) => {
+        dispatch(getProductAction(product));
+    };
+};
+
+const getProductAction = product => ({
+    type: GET_EDIT_PRODUCT,
+    payload: product
+});
+
+
+// FUNCTION TO EDIT PRODUCT
+export function editProductAction(product) {
+    return async (dispatch)=>{
+        dispatch(editProduct());
+        try {
+            await axiosClient.put(`/products/${product.id}`, product);
+            dispatch(editProductSuccess(product));
+        } catch(error) {
+            console.log(error);
+            dispatch(editProductError());
+        }
+    };
+}; 
+
+const editProduct = () => ({
+    type: START_EDIT_PRODUCT //nothing change, this type has only describing purpose
+});
+const editProductSuccess = product => ({
+    type: EDITED_PRODUCT_SUCCESS,
+    payload: product
+});
+const editProductError = ()=>({
+    type: EDITED_PRODUCT_ERROR
 });

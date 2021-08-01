@@ -3,16 +3,16 @@
     {
       "id": 1,
       "name": "Jugo de Zanahoria",
-      "price": "3"
+      "price": "7.95"
     },
     {
       "id": 2,
       "name": "Jugo de Naranja",
-      "price": "1"
+      "price": "15"
     },
     {
-      "name": "Jugo de Granada",
-      "price": "300",
+      "name": "Zom de Graná",
+      "price": "29",
       "id": 3
     },
     {
@@ -21,13 +21,13 @@
       "id": 4
     },
     {
-      "name": "Jugo de Fresa",
-      "price": "200",
+      "name": "Oro de Fresas",
+      "price": "125",
       "id": 5
     },
     {
-      "name": "coco juice",
-      "price": 12,
+      "name": "Zumo coco",
+      "price": "6",
       "id": 13
     }
   ]
