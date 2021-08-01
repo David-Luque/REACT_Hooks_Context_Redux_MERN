@@ -14,6 +14,7 @@ const Products = () => {
         //api call
         const getProducts = () => dispatch( getProductsAction() );
         getProducts();
+        //eslint-disable-next-line
     }, []);
 
     //obtain state values

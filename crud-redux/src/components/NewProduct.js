@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 //action from redux
 import { createNewProductAction } from '../actions/productActions';
+import { showAlertAction, hideAlertAction } from '../actions/alertActions';
 
 
 const NewProduct = ({history}) => {
@@ -16,7 +17,7 @@ const NewProduct = ({history}) => {
     //acces to store's state
     const loading = useSelector( state => state.products.loading )
     const error = useSelector(state => state.products.error);
-    
+    const alert = useSelector(state => state.alerts.alert)
     //productAction's action call 
     const addProduct = product => dispatch(createNewProductAction(product));
 
@@ -25,17 +26,19 @@ const NewProduct = ({history}) => {
         e.preventDefault();
         //validate form
         if(name.trim() === '' || price <= 0) {
-            return 
+            const alert = {
+                msg: 'All fields are required',
+                category: 'alert alert-danger text-center text-uppercase p3'
+            }
+            return dispatch(showAlertAction(alert));
         }
-
-        //check for errors
-
+        //if no errors
+        dispatch(hideAlertAction());
         //Create new product
         addProduct({
             name,
             price
         });
-
         //redirect
         history.push('/');
     };
@@ -49,6 +52,9 @@ const NewProduct = ({history}) => {
                         <h2 className="text-center mb-4 font-weight-bold">
                             Add new product
                         </h2>
+
+                        {alert && (<p className={alert.category}> {alert.msg} </p>) }
+
                         <form
                             onSubmit={submitNewProduct}
                         >

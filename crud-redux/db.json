@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Jugo de Zanahoria",
-      "price": "7.95"
+      "price": "4"
     },
     {
       "id": 2,
@@ -29,6 +29,11 @@
       "name": "Zumo coco",
       "price": "6",
       "id": 13
+    },
+    {
+      "name": "papas",
+      "price": 12,
+      "id": 14
     }
   ]
 }

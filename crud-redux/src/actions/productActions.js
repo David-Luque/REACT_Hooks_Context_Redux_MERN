@@ -161,5 +161,6 @@ const editProductSuccess = product => ({
     payload: product
 });
 const editProductError = ()=>({
-    type: EDITED_PRODUCT_ERROR
+    type: EDITED_PRODUCT_ERROR,
+    payload: true
 });

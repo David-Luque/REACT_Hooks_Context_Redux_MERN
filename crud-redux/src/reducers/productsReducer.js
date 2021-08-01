@@ -22,7 +22,7 @@ const initialState = {
     editProduct: null
 };
 
-export default function(state=initialState, action) {
+export default function productReducer(state=initialState, action) {
     switch(action.type) {
         case START_GET_PRODUCTS:
         case ADD_PRODUCT:
@@ -78,8 +78,6 @@ export default function(state=initialState, action) {
                     : product
                 )
             }
-
-
         default:
             return state;
     }
