@@ -2,16 +2,13 @@
 import Layout from '../components/layout/Layout';
 import styled from '@emotion/styled';
 
-const Heading = styled.h1`
-  background-color: royalblue;
-`;
 
-export default function SecondPage() {
+export default function CreateAccount() {
   return (
     <div>
       <Layout>
-        <Heading>Second page</Heading>
+        <h1>Create acount</h1>
       </Layout>
     </div>
   )
-}
+}; 

@@ -2,16 +2,13 @@
 import Layout from '../components/layout/Layout';
 import styled from '@emotion/styled';
 
-const Heading = styled.h1`
-  background-color: coral;
-`;
 
-export default function Home() {
+export default function MostPopular() {
   return (
     <div>
       <Layout>
-        <Heading>HOME</Heading>
+        <h1>Most popular</h1>
       </Layout>
     </div>
   )
-};
+}; 
