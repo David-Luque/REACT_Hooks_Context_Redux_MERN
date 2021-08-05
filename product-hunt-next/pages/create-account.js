@@ -3,6 +3,8 @@ import Layout from '../components/layout/Layout';
 import { css } from '@emotion/react';
 import { Form, Field, InputSubmit, Error } from '../components/ui/Form';
 
+import firebase from '../firebase';
+
 //validations
 import useValidation from '../hooks/useValidation';
 import validateCreateAccount from '../validation/validateCreateAccount';
@@ -27,8 +29,12 @@ export default function CreateAccount() {
 
   const { name, email, password } = values;
 
-  function createNewAccount() {
-    console.log('creating account...')
+  async function createNewAccount() {
+    try {
+      await firebase.register(name, email, password) //"register" can be anything
+    } catch(error) {
+      console.error("There was an error creating user", error)
+    }
   };
   
 
