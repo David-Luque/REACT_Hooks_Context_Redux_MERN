@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import Link from 'next/link';
+import Router from 'next/router';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import SearchBar from '../ui/SearchBar';
@@ -29,6 +30,11 @@ const Logo = styled.p`
 const Header = () => {
 
     const { user, firebase } = useContext(FirebaseContext);
+
+    const closeSession = async ()=>{
+        await firebase.logout();
+        Router.push('/');
+    };
 
     return ( 
         <header
@@ -66,7 +72,7 @@ const Header = () => {
                             > Hello {user.displayName}</p>
                             <Button
                                 bgColor="true"
-                                onClick={() => firebase.logout()}
+                                onClick={closeSession}
                             > Logout</Button>
                         </>
                     ) : (

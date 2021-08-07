@@ -1,20 +1,21 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import firebase from '../firebase';
 
-export default function useAuthentication() {
-    const [ authUser, setAuthUser ] = useState(null);
+function useAuthentication() {
+    const [ authorizeUser, setAuthorizeUser ] = useState(null);
 
     useEffect(()=>{
         const unsuscribe = firebase.auth.onAuthStateChanged(user => {
             if(user) {
-                setAuthUser(user)
+                setAuthorizeUser(user)
             } else {
-                setAuthUser(null)
+                setAuthorizeUser(null)
             }
-
-            return unsuscribe();
-        })
+        });
+        return () => unsuscribe();
     }, []);
 
-    return authUser;
+    return authorizeUser;
 };
+
+export default useAuthentication;
