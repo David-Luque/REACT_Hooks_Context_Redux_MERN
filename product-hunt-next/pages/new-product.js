@@ -46,6 +46,7 @@ export default function NewProduct() {
 
   //context with firebase CRUD operations
   const { user, firebase } = useContext(FirebaseContext);
+  console.log(user)
 
 
   async function createNewProduct() {
@@ -62,7 +63,11 @@ export default function NewProduct() {
       description,
       votes: 0,
       comments: [],
-      createdAt: Date.now()
+      createdAt: Date.now(),
+      owner: {
+        id: user.uid,
+        name: user.displayName
+      }
     };
     await firebase.db.collection('products').add(product);
 

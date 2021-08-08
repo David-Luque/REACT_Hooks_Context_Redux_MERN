@@ -99,7 +99,8 @@ const ProductDetails = ({ product }) => {
         imageURL,
         name,
         url,
-        votes
+        votes,
+        owner
     } = product;
 
     return (
@@ -123,6 +124,7 @@ const ProductDetails = ({ product }) => {
                     
                     <p>Published: {formatDistanceToNow(new Date(createdAt))}</p>
                     {/* <p>Published: {formatDistanceToNow(new Date(createdAt), {locale: es})}</p>  EN ESPAÑOL U OTRO IDIOMA*/}
+                    {<p>By {owner.name} from: {enterprise}</p>}
                 </div>
             </ProductDescription>
 
