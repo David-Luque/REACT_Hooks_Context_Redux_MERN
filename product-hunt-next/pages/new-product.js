@@ -4,12 +4,13 @@ import FileUploader from 'react-firebase-file-uploader';
 import Layout from '../components/layout/Layout';
 import { css } from '@emotion/react';
 import { Form, Field, InputSubmit, Error } from '../components/ui/Form';
-
 import { FirebaseContext } from '../firebase';
+import Error404 from '../components/layout/404';
 
 //validations
 import useValidation from '../hooks/useValidation';
 import validateNewProduct from '../validation/validateNewProduct';
+
 
 const INITIAL_STATE = {
   name: '',
@@ -46,7 +47,7 @@ export default function NewProduct() {
 
   //context with firebase CRUD operations
   const { user, firebase } = useContext(FirebaseContext);
-  console.log(user)
+  //console.log(user)
 
 
   async function createNewProduct() {
@@ -67,7 +68,8 @@ export default function NewProduct() {
       owner: {
         id: user.uid,
         name: user.displayName
-      }
+      },
+      voters: []
     };
     await firebase.db.collection('products').add(product);
 
@@ -102,12 +104,13 @@ export default function NewProduct() {
           setImageURL(url);
         })
   };
-  
+
 
   return ( 
     <div>
       <Layout>
-        <>
+        {!user ? <Error404 message="Access not valid"/> : (
+          <>
             <h1
               css={css`
                 text-align: center;
@@ -202,7 +205,8 @@ export default function NewProduct() {
                 <InputSubmit type="submit" value="Create product"/>
             
             </Form>
-        </>
+          </>
+        )}
       </Layout>
     </div>
   )

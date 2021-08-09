@@ -26,10 +26,10 @@ const Nav = () => {
 
     return ( 
         <Navi>
-            <Link href="/">Home</Link>
-            <Link href="/most-popular">Most popular</Link>
+            <Link href="/"><a>Home</a></Link>
+            <Link href="/most-popular"><a>Most popular</a></Link>
             {user && (
-                <Link href="/new-product">New product</Link>
+                <Link href="/new-product"><a>New product</a></Link>
             )}
         </Navi>
      );

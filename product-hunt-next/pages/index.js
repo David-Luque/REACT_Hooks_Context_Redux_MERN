@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React from 'react';
 import Layout from '../components/layout/Layout';
 import ProductDetails from '../components/layout/ProductDetails';
-import { FirebaseContext } from '../firebase';
+import useProducts from '../hooks/useProducts';
 import styled from '@emotion/styled';
 
 const Heading = styled.h1`
@@ -9,31 +9,8 @@ const Heading = styled.h1`
 `;
 
 export default function Home() {
-  
-  const [ products, setProducts ] = useState([]);
 
-  const { firebase } = useContext(FirebaseContext);
-
-  useEffect(()=>{
-    const getProducts = ()=>{
-      firebase.db
-        .collection('products')
-        .orderBy('createdAt', 'desc')
-        .onSnapshot(handleSnapshot)
-    };
-    getProducts();
-  }, []);
-
-  function handleSnapshot(snapshot) {
-    const products = snapshot.docs.map(doc => {
-      return {
-        ...doc.data(),
-        id: doc.id
-      }
-    });
-    setProducts(products);
-  };
-
+  const { products } = useProducts('createdAt');
   
   return (
     <div>
