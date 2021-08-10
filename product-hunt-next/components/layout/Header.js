@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import SearchBar from '../ui/SearchBar';
 import Nav from './Nav';
-import Button from '../ui/Buton';
+import Button from '../ui/Button';
 import { FirebaseContext } from '../../firebase';
 
 const ContainerHeader = styled.div`

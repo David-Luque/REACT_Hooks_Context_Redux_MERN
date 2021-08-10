@@ -6,8 +6,8 @@ import { FirebaseContext } from '../../firebase';
 import Error404 from '../../components/layout/404';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Field, InputSubmmit } from '../../components/ui/Form';
-import Button from '../../components/ui/Buton';
+import { Field, InputSubmit } from '../../components/ui/Form';
+import Button from '../../components/ui/Button';
 
 
 const ProductContainer = styled.div`
@@ -48,7 +48,6 @@ const Product = () => {
             const getProducts = async ()=>{
                 const productQuery = await firebase.db.collection('products').doc(id);
                 const productDB = await productQuery.get();
-                //console.log(productDB.data())
                 if(productDB.exists) {
                     setProduct(productDB.data());
                     setCallDB(false);
@@ -60,6 +59,10 @@ const Product = () => {
             getProducts();
         }
     }, [id, product]);
+
+    if(Object.keys(product).length === 0 && !error) {
+        return "Loading..."
+    }
 
     const { 
         comments, 
@@ -117,13 +120,12 @@ const Product = () => {
         e.preventDefault();
 
         if(!user) return router.push('/login');
+        if(Object.keys(comment).length === 0) return;
 
         //info extra for comment
-        setComment({
-            ...comment,
-            userId: user.uid,
-            username: user.displayName
-        });
+        comment.userId = user.uid;
+        comment.userName = user.displayName;
+        //console.log(comment)
 
         //get copy from product comments and add new comments to it
         const newComments = [...comments, comment];
@@ -173,9 +175,7 @@ const Product = () => {
 
     return ( 
         <Layout>
-            <> 
-                {(Object.keys(product).length === 0 && !error) && <p>Loading...</p>}
-
+            <>
                 { error
                     ? <Error404 message="This product does not exist" />
                     : (
@@ -206,7 +206,7 @@ const Product = () => {
                                                     onChange={hadleCommentChange}
                                                 />
                                                 </Field>
-                                                <InputSubmmit
+                                                <InputSubmit
                                                     type="submit"
                                                     value="Add comment"
                                                 />
@@ -233,7 +233,7 @@ const Product = () => {
                                                                 font-weight: bold;
                                                             `}
                                                         >
-                                                            {comment.username}
+                                                            {' '}{comment.userName}
                                                         </span>
                                                     </p>
                                                     {isOwner(comment.userId) && (
