@@ -38,7 +38,7 @@ const Nav = ()=>{
             <NavLink to={'/'} activeClassName="actual-page"> 
                 Home 
             </NavLink>
-            <NavLink to={'/we'} activeClassName="actual-page"> 
+            <NavLink to={'/aboutUs'} activeClassName="actual-page"> 
                 We page 
             </NavLink>
 
