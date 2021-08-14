@@ -1,5 +1,5 @@
 require("dotenv").config({
-  path: `.env.${process.env.API_TOKEN}`,
+  path: `.env.${process.env.NODE_ENV}`,
 })
 
 module.exports = {
@@ -36,10 +36,16 @@ module.exports = {
     },
     `gatsby-plugin-gatsby-cloud`,
     {
-      resolve: 'gatsby-source-datocms',
+      resolve: `gatsby-source-datocms`,
       options: {
         apiToken: process.env.API_TOKEN,
-      }
-    }
+        environment: `main`,
+        previewMode: false,
+        disableLiveReload: false,
+        localeFallbacks: {
+          it: ['en'],
+        },
+      },
+    },
   ],
 }

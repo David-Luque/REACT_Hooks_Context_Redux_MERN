@@ -40,7 +40,6 @@ const HomeContent = () => {
         }
     `);
 
-    //console.log(info.allDatoCmsPage.nodes[0]);
     const { content, image, title } = info.allDatoCmsPage.nodes[0];
 
     return ( 

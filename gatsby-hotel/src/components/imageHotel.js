@@ -49,7 +49,7 @@ const ImageHotel = () => {
         }
     `)
 
-    console.log(image.sharp.fluid)
+    //console.log(image.sharp.fluid)
 
     return (
         <ImageBackground tag="section" fluid={image.sharp.fluid} fadeIn='soft'>
