@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
+import useSEO from '../hooks/useSEO';
 import BackgroundImage from 'gatsby-background-image';
 import styled from '@emotion/styled';
 
@@ -51,11 +52,14 @@ const ImageHotel = () => {
 
     //console.log(image.sharp.fluid)
 
+    const seo = useSEO();
+    const { fallbackSeo: { title, description } } = seo;
+
     return (
         <ImageBackground tag="section" fluid={image.sharp.fluid} fadeIn='soft'>
             <TextImage>
-                <h1>Welcome to Gatsby hotel</h1>
-                <p>Best place for your vacation</p>
+                <h1> {title} </h1>
+                <p> {description} </p>
             </TextImage>
         </ImageBackground>
     );

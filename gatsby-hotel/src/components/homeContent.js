@@ -41,7 +41,7 @@ const HomeContent = () => {
     `);
 
     const { content, image, title } = info.allDatoCmsPage.nodes[0];
-
+    
     return ( 
         <>
             <h2

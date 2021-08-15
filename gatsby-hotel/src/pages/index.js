@@ -2,7 +2,7 @@ import * as React from "react";
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import Layout from "../components/layout"
-import Image from '../components/imageHotel';
+import ImageHotel from '../components/imageHotel';
 import HomeContent from '../components/homeContent';
 import RoomPreview from '../components/roomPreview';
 import useRooms from '../hooks/useRooms';
@@ -27,7 +27,7 @@ const IndexPage = () => {
   return(
     <Layout>
 
-    <Image/>
+    <ImageHotel/>
     <HomeContent/>
 
     <h2

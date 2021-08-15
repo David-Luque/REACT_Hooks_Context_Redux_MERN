@@ -12,11 +12,11 @@ const HomeLink = styled(Link)`
 `;
 
 
-const Header = () => {
+const Header = ({ siteName }) => {
     return (
         <header
             css={css`
-                background-color: #333;
+                background-color: rgba(44,62,80);
                 padding: 1rem;
             `}
         >
@@ -33,7 +33,7 @@ const Header = () => {
                 `}
             >
                 <HomeLink to={'/'}>
-                    <h1>Gatsby hotel</h1>
+                    <h1> {siteName} </h1>
                 </HomeLink>
                 
                 <Nav/>
