@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../components/layout/Layout';
-import ProductDetails from '../components/layout/ProductDetails';
+import ProductDetails from '../components/layout/';
 import styled from '@emotion/styled';
 import useProducts from '../hooks/useProducts';
 

@@ -1,13 +1,13 @@
 import React from 'react';
-//import Image from 'next/image';
 import styled from '@emotion/styled';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 //import { es } from 'date-fns/locale';
 import Link from 'next/link';
+import Image from 'next/image';
 
 
 
-const Image = styled.img`
+const ImageStyled = styled(Image)`
     width: 200px;
 `;
 
@@ -117,7 +117,7 @@ const ProductDetails = ({ product }) => {
                     <Description>{description}</Description>
                     <Comments>
                         <div>
-                            <img src="/static/img/comments-icon.png" alt={name}/>
+                            <ImageStyled src="/static/img/comments-icon.png" alt={name}/>
                             <p>{comments.length} comments</p>
                         </div>
                     </Comments>

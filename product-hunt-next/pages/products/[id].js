@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import Layout from '../../components/layout/Layout';
 import { FirebaseContext } from '../../firebase';
@@ -190,7 +191,7 @@ const Product = () => {
                                 <div>
                                     <p>Published: {formatDistanceToNow(new Date(createdAt))}</p>
                                     {<p>By {owner.name} from: {enterprise}</p>}
-                                    <img src={imageURL} alt={name}/>
+                                    <Image src={imageURL} alt={name}/>
                                     <p>{description}</p>
 
                                     { user && (
