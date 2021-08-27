@@ -7,6 +7,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-emotion`,
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -17,6 +18,15 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-source-strapi`,
+      options: {
+        apiURL: `http://localhost:1337`,
+        queryLimit: 1000, // Defaults to 100
+        collectionTypes: [`properties`, `pages`, `categories`],
+        //singleTypes: [`home-page`, `contact`],
+      },
+    },
     // {
     //   resolve: `gatsby-plugin-manifest`,
     //   options: {
