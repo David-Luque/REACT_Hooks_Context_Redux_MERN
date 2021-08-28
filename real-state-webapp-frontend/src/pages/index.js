@@ -4,6 +4,8 @@ import useHome from '../hooks/useHome';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import BackgroundImage from 'gatsby-background-image';
+import * as heroCSS from '../css/hero.module.css';
+import Find from '../components/find';
 
 const ImageBackground = styled(BackgroundImage)`
     height: 600px;
@@ -14,17 +16,16 @@ const Index = () => {
 
     const home = useHome();
     const { name, content, image } = home[0];
-    console.log(image)
 
     return (
         <Layout>
             <ImageBackground
                 tag="section"
-                fluid={image.sharp.fluid}
+                fluid={image.localFile.childImageSharp.fluid}
                 fadeIn="soft"
             >
-                <div>
-                    <h1>
+                <div className={heroCSS.bgimage}>
+                    <h1 className={heroCSS.title}>
                         Exclusive houses and apartments for sale
                     </h1>
                 </div>
@@ -44,6 +45,8 @@ const Index = () => {
                     >{content}</p>
                 </div>
             </main>
+
+            <Find/>
             
         </Layout>
     );
