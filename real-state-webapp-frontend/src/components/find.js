@@ -21,7 +21,6 @@ const Find = () => {
             }
         }
     `)
-    console.log(image)
 
     return(
         <ImageBackground
