@@ -34,7 +34,7 @@ const useProperties = () => {
             }
         }
     `);
-    console.log(data)
+    return data.allStrapiProperties.nodes;
 };
 
 export default useProperties;
