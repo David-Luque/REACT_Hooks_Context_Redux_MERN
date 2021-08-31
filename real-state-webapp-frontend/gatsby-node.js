@@ -22,7 +22,10 @@ exports.createPages = async ({ actions, graphql, reporter })=>{
     properties.forEach(property => {
         actions.createPage({
             path: urlSlug(property.name),
-            component: require.resolve('./src/components/properties.js')
+            component: require.resolve('./src/components/properties.js'),
+            context: {
+                id: property.id
+            }
         })
     });
 }; 

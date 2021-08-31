@@ -38,15 +38,15 @@ const Icons = ({ wc, parking, rooms }) => {
     return (
         <IconsList>
             <li>
-                <img src={iconImages[0].node.publicURL} alt="rooms icon" />
+                <img src={iconImages[4].node.publicURL} alt="rooms icon" />
                 <p>{rooms}</p>
             </li>
             <li>
-                <img src={iconImages[1].node.publicURL} alt="parking icon" />
+                <img src={iconImages[3].node.publicURL} alt="parking icon" />
                 <p>{parking}</p>
             </li>
             <li>
-                <img src={iconImages[2].node.publicURL} alt="WC icon" />
+                <img src={iconImages[5].node.publicURL} alt="WC icon" />
                 <p>{wc}</p>
             </li>
         </IconsList>
