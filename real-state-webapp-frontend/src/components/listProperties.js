@@ -7,15 +7,24 @@ import useFilter from '../hooks/useFilter';
 
 const ListProperties = () => {
     const propertiesData = useProperties();
-    const [ properties, setProperties ] = useState([]);
+    const [ properties ] = useState(propertiesData);
+    const [ filterProperties, setFilterProperties ] = useState([]);
 
     //properties filter
-    const { FilterUI } = useFilter();
+    const { category, FilterUI } = useFilter();
 
 
     useEffect(()=>{
-        setProperties(propertiesData)
-    }, []);
+        if(category) {
+            const filteredProperties = properties.filter(property => (
+                property.category.name === category
+            ));
+            setFilterProperties(filteredProperties)
+        } else {
+            setFilterProperties(properties)
+        }
+
+    }, [ category, properties ]);
 
     return ( 
         <>
@@ -26,7 +35,7 @@ const ListProperties = () => {
             {FilterUI()}
 
             <ul className={listPropertiesCSS.properties}>
-                {properties.map(property => (
+                {filterProperties.map(property => (
                     <PropertyPreview
                         key={property.id}
                         propertyData={property}

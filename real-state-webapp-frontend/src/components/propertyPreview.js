@@ -49,7 +49,7 @@ const Button = styled(Link)`
 
 const PropertyPreview = ({ propertyData }) => {
     
-    const { name, description, image, wc, parking, rooms, price } = propertyData;
+    const { name, image, wc, parking, rooms, price } = propertyData;
 
     return ( 
         <Card>
