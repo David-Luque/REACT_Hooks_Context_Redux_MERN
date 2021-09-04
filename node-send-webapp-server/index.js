@@ -4,6 +4,7 @@ const connectDB = require('./config/db');
 //create server
 const app = express();
 
+
 //DB connection
 connectDB();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 
 //app routes
 app.use('/api/users', require('./routes/users'))
+app.use('/api/auth', require('./routes/auth'));
 
 //start the app
 app.listen(port, '0.0.0.0', ()=>{
