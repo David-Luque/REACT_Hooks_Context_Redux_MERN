@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config({ path: '.env' });
 
 module.exports = (req, res, next)=>{
-    //console.log(req.get('Authorization'));
     const authHeader = req.get('Authorization');
     if(authHeader) {
         //get the token

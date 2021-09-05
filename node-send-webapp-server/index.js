@@ -17,6 +17,7 @@ app.use(express.json());
 //app routes
 app.use('/api/users', require('./routes/users'))
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/links', require('./routes/links'))
 
 //start the app
 app.listen(port, '0.0.0.0', ()=>{
