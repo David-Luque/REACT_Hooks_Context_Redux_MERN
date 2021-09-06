@@ -41,3 +41,31 @@ exports.newLink = async (req, res, next)=>{
         console.log(error)
     }
 };
+
+//get link
+exports.getLink = async (req, res, next)=>{
+    //verify if url exist
+    const link = await Link.findOne({ url: req.params.url })
+    if(!link) {
+        res.status(404).json({ msg: 'This link do not exist' });
+    }
+    //if link exist
+    res.json({ file: link.name });
+
+    //check how many downloads remains
+    const { downloads, name } = link;
+
+    if(downloads === 1) {
+        //delete file
+        req.file = name;
+
+        //delete access from db
+        await Link.findOneAndRemove({ url: req.params.url })
+        
+        next();
+    } else {
+        //console.log('restar 1 a downloads')
+        link.downloads--;
+        await link.save();
+    }
+};
