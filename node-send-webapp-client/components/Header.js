@@ -1,9 +1,21 @@
 import React from 'react';
+import Link from 'next/link';
 
 const Header = () => {
     return (
         <header className="py-8 flex flex-col md:flex-row items-center justify-between">
-            <img className="w-64 mb-8 md:mb-0" src="logo.svg" alt="Home logo" />
+            <Link href="/">
+                <img className="w-64 mb-8 md:mb-0" src="logo.svg" alt="Home logo" />
+            </Link>
+            
+            <div>
+                <Link href="/login">
+                    <a className="bg-red-500 px-5 py-3 rounded text-white font-bold uppercase mr-3">Login</a>
+                </Link>
+                <Link href="/signup">
+                    <a className="bg-black px-5 py-3 rounded text-white font-bold uppercase">Sign up</a>
+                </Link>
+            </div>
         </header>
     );
 }
