@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import Layout from '../components/Layout';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import authContext from '../context/auth/authContext';
+import Alert from '../components/Alert';
+
 
 const SignUp = () => {
+
+    const AuthContext = useContext(authContext);
+    const { message, signUser  } = AuthContext;
 
     //form and validation with formik and yup
     const formik = useFormik({
@@ -19,16 +25,20 @@ const SignUp = () => {
         }),
         onSubmit: (values)=>{
             console.log(values)
+            signUser(values);
         }
     });
 
   return (
     <div className="container">
       <Layout>
-        <div className="md:w-4/5 xl: w-3/5 mx-auto mb-32">
+        <div className="md:w-4/5 xl:w-3/5 mx-auto mb-32">
             <h2 className="text-4xl font-sans font-bold text-gray-800 text-center my-4">
                 Create account
             </h2>
+
+            {message && <Alert/>}
+
             <div className="flex justify-center mt-5">
                 <div className="w-full max-w-lg">
                     <form
