@@ -1,19 +1,24 @@
 import authContext from "./authContext";
 import React, { useReducer } from "react";
-import axiosClient from "../../config/axios";
 import authReducer from "./authReducer";
 import {
     SIGNUP_SUCCESS,
     SIGNUP_FAILURE,
-    CLEAN_ALERT
+    CLEAN_ALERT,
+    AUTH_SUCCESS,
+    AUTH_FAILURE,
+    AUTH_USER,
+    SIGN_OUT
 } from '../../types';
+import axiosClient from "../../config/axios";
+import tokenAuth from "../../config/tokenAuth";
 
 
 const AuthState = ({ children }) => {
 
     //defining initial state
     const initialState = {
-        token: '',
+        token: typeof window !== 'undefined' ? localStorage.getItem('NS_token') : '',
         authenticated: null,
         user: null,
         message: null
@@ -44,14 +49,54 @@ const AuthState = ({ children }) => {
         }, 3000);
     };
 
-    //user authenticated
-    const authUser = name => {
-        dispatch({
-            type: USER_AUTHENTICATED,
-            payload: name
-        });
+    //authenticate user
+    const authUser = async data => {
+        try {
+            const response = await axiosClient.post('/api/auth', data);
+            dispatch({
+                type: AUTH_SUCCESS,
+                payload: response.data.token
+            });
+
+        } catch (error) {
+            dispatch({
+                type: AUTH_FAILURE,
+                payload: error.response.data.msg
+            });
+        }
+        //clean alert
+        setTimeout(()=>{
+            dispatch({
+                type: CLEAN_ALERT
+            })
+        }, 3000);
     };
 
+    //return auth user depending of token
+    const authUserLocal = async () => {
+        const token = localStorage.getItem('NS_token');
+        if(token) tokenAuth(token);
+        try {
+            const response = await axiosClient.get('/api/auth')
+            console.log(response.data.user)
+            dispatch({
+                type: AUTH_USER,
+                payload: response.data.user
+            });
+        } catch (error) {
+            dispatch({
+                type: AUTH_FAILURE,
+                payload: error.response.data.msg
+            });
+        }
+    }; 
+
+    //close session
+    const signOut = ()=>{
+        dispatch({
+            type: SIGN_OUT
+        });
+    };
 
     return (
         <authContext.Provider
@@ -61,7 +106,9 @@ const AuthState = ({ children }) => {
                 user: state.user,
                 message: state.message,
                 signUser,
-                authUser
+                authUser,
+                authUserLocal,
+                signOut
             }}
         >
             {children}
