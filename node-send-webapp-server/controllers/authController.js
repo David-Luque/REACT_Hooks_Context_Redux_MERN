@@ -27,7 +27,8 @@ exports.authenticateUser = async (req, res, next)=>{
         // create JWT
         const token = jwt.sign({
             id: user._id,
-            name: user.name
+            name: user.name,
+            email: user.email
         },process.env.SECRET, {
             expiresIn: '8h'
         });
