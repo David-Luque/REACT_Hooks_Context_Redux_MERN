@@ -1,7 +1,7 @@
 import {
     SIGNUP_SUCCESS,
     SIGNUP_FAILURE,
-    CLEAN_ALERT,
+    HIDE_ALERT,
     AUTH_FAILURE,
     AUTH_SUCCESS,
     AUTH_USER,
@@ -38,7 +38,7 @@ const authReducer = (state, action) => {
                 token: null,
                 authenticated: null
             }
-        case CLEAN_ALERT:
+        case HIDE_ALERT:
             return {
                 ...state,
                 message: null

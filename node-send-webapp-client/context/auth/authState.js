@@ -4,7 +4,7 @@ import authReducer from "./authReducer";
 import {
     SIGNUP_SUCCESS,
     SIGNUP_FAILURE,
-    CLEAN_ALERT,
+    HIDE_ALERT,
     AUTH_SUCCESS,
     AUTH_FAILURE,
     AUTH_USER,
@@ -44,7 +44,7 @@ const AuthState = ({ children }) => {
         //clean alert after 3 seconds
         setTimeout(()=>{
             dispatch({
-                type: CLEAN_ALERT
+                type: HIDE_ALERT
             });
         }, 3000);
     };
@@ -67,7 +67,7 @@ const AuthState = ({ children }) => {
         //clean alert
         setTimeout(()=>{
             dispatch({
-                type: CLEAN_ALERT
+                type: HIDE_ALERT
             })
         }, 3000);
     };

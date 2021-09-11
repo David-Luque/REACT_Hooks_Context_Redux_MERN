@@ -1,19 +1,26 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { useDropzone } from 'react-dropzone';
 import axiosClient from '../config/axios';
+import appContext from '../context/app/appContext';
 
 const Dropzone = () => {
 
-    const onDrop = useCallback(async (acceptedFiles) => {
-        const formData = new FormData();
-        formData.append('theFile', acceptedFiles[0])
+    const AppContext = useContext(appContext);
+    const { showAlert, uploadFile, loading, createLink } = AppContext;
 
-        const response = await axiosClient.post('api/files', formData);
-        console.log(response.data)
+    const onDropRejected = ()=>{
+        showAlert('Cannot upload files more than 1MB. Create an account to upload larger files');
+    };
+
+    const onDropAccepted = useCallback(async (acceptedFiles) => {
+        const formData = new FormData();
+        formData.append('theFile', acceptedFiles[0]);
+        
+        uploadFile(formData, acceptedFiles[0].path);
     }, []);
 
     //extract dropzone content
-    const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({ onDrop });
+    const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({ onDropAccepted, onDropRejected, maxSize: 1_000_000 });
 
     const files = acceptedFiles.map((file, index) => (
         <li className="bg-white flex-1 p-3 mb-4 shadow-lg rounded" key={index}>
@@ -22,9 +29,7 @@ const Dropzone = () => {
         </li>
     ));
 
-    const createLink = ()=>{
-        console.log('creating link...')
-    };
+    
 
     return (
         <div className="md:flex-1 mb-3 mx-2 mt-16 lg:mt-0 flex flex-col items-center justify-center border-dashed border-gray-400 border-2 bg-gray-100 px-4">
@@ -36,11 +41,18 @@ const Dropzone = () => {
                     <ul>
                       {files}
                     </ul>
+                    {loading ? (
+                        //set spinner here
+                        <p className="my-10 text-center tezt-gray-600">
+                            Uploading file...
+                        </p>
+                    ) : (
                     <button 
                         className="bg-blue-700 w-full py-3 rounded-lg text-white my-10 hover:bg-blue-800"
                         type="button"
                         onClick={() => createLink()}
                     > Create link </button>
+                    )}
                   </div>
                            
             ) : (
