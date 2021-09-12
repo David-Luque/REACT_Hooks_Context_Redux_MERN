@@ -9,7 +9,8 @@ import {
     UPLOAD_FILE_SUCCESS,
     UPLOAD_FILE_FAILURE,
     CREATE_LINK_SUCCESS,
-    CREATE_LINK_FAILURE
+    CREATE_LINK_FAILURE,
+    CLEAN_STATE
 } from '../../types';
 
 const AppState = ({ children }) => {
@@ -85,7 +86,11 @@ const AppState = ({ children }) => {
         }
     };
 
-
+    const cleanState = ()=>{
+        dispatch({
+            type: CLEAN_STATE
+        });
+    };
 
     return (
         <appContext.Provider
@@ -100,7 +105,8 @@ const AppState = ({ children }) => {
                 url: state.url,
                 showAlert,
                 uploadFile,
-                createLink
+                createLink,
+                cleanState
             }}
         >
             {children}

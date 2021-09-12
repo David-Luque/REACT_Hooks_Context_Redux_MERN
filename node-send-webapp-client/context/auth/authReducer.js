@@ -5,7 +5,8 @@ import {
     AUTH_FAILURE,
     AUTH_SUCCESS,
     AUTH_USER,
-    SIGN_OUT
+    SIGN_OUT,
+    CLEAN_STATE
 } from '../../types';
 
 
@@ -43,6 +44,18 @@ const authReducer = (state, action) => {
                 ...state,
                 message: null
             } 
+        case CLEAN_STATE:
+            return {
+                ...state,
+                message_file: null,
+                name: '',
+                origin_name: '',
+                loading: false,
+                downloads: 1,
+                password: '',
+                author: null,
+                url: ''
+            }
         default:
             return state;
     }
