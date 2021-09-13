@@ -29,7 +29,8 @@ const authReducer = (state, action) => {
         case AUTH_USER:
             return {
                 ...state,
-                user: action.payload
+                user: action.payload,
+                authenticated: true
             }
         case SIGN_OUT:
             localStorage.removeItem('NS_token');

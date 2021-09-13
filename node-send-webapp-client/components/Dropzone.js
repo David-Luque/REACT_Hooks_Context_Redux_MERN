@@ -2,11 +2,17 @@ import React, { useCallback, useContext } from 'react';
 import { useDropzone } from 'react-dropzone';
 import axiosClient from '../config/axios';
 import appContext from '../context/app/appContext';
+import authContext from '../context/auth/authContext';
+import Form from './Form';
 
 const Dropzone = () => {
 
     const AppContext = useContext(appContext);
     const { showAlert, uploadFile, loading, createLink } = AppContext;
+
+    const AuthContext = useContext(authContext);
+    const { authenticated, user } = AuthContext;
+
 
     const onDropRejected = ()=>{
         showAlert('Cannot upload files more than 1MB. Create an account to upload larger files');
@@ -41,6 +47,9 @@ const Dropzone = () => {
                     <ul>
                       {files}
                     </ul>
+
+                    { authenticated ? <Form /> : null}
+
                     {loading ? (
                         //set spinner here
                         <p className="my-10 text-center tezt-gray-600">

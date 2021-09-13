@@ -17,7 +17,8 @@ const Index = () => {
   const { messsage_file, url } = AppContext;
 
   useEffect(()=>{
-    authUserLocal()
+    const token = localStorage.getItem('NS_token');
+    if(token) authUserLocal();
   }, []);
 
  

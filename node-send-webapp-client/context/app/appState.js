@@ -10,6 +10,8 @@ import {
     UPLOAD_FILE_FAILURE,
     CREATE_LINK_SUCCESS,
     CREATE_LINK_FAILURE,
+    ADD_PASSWORD,
+    EDIT_DOWNLOADS,
     CLEAN_STATE
 } from '../../types';
 
@@ -86,6 +88,22 @@ const AppState = ({ children }) => {
         }
     };
 
+    //modify password
+    const editPassword = password => {
+        console.log('password: ' + password);
+        dispatch({
+            type: ADD_PASSWORD,
+            payload: password
+        });
+    };
+
+    const editDownloads = downloads => {
+        dispatch({
+            type: EDIT_DOWNLOADS,
+            payload: downloads
+        });
+    };
+
     const cleanState = ()=>{
         dispatch({
             type: CLEAN_STATE
@@ -106,7 +124,9 @@ const AppState = ({ children }) => {
                 showAlert,
                 uploadFile,
                 createLink,
-                cleanState
+                cleanState,
+                editPassword,
+                editDownloads
             }}
         >
             {children}

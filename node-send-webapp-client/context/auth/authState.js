@@ -78,11 +78,13 @@ const AuthState = ({ children }) => {
         if(token) tokenAuth(token);
         try {
             const response = await axiosClient.get('/api/auth')
-            console.log(response.data.user)
-            dispatch({
-                type: AUTH_USER,
-                payload: response.data.user
-            });
+            if(response.data.user) {
+               dispatch({
+                    type: AUTH_USER,
+                    payload: response.data.user
+                }); 
+            }
+            
         } catch (error) {
             dispatch({
                 type: AUTH_FAILURE,

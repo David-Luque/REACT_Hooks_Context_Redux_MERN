@@ -5,7 +5,9 @@ import {
     UPLOAD_FILE_SUCCESS,
     UPLOAD_FILE_FAILURE,
     CREATE_LINK_SUCCESS,
-    CREATE_LINK_FAILURE
+    CREATE_LINK_FAILURE,
+    ADD_PASSWORD,
+    EDIT_DOWNLOADS
 } from '../../types';
 
 
@@ -39,6 +41,16 @@ const appReducer = (state, action)=>{
             return {
                 ...state,
                 url: action.payload
+            }
+        case ADD_PASSWORD:
+            return {
+                ...state,
+                password: action.payload
+            }
+        case EDIT_DOWNLOADS:
+            return {
+                ...state,
+                downloads: action.payload
             }
         default:
             return state;
