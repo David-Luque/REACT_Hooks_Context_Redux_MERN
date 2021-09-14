@@ -14,9 +14,19 @@ router.post('/',
     linksController.newLink
 );
 
+router.get('/',
+    auth,
+    linksController.allLinks
+);
+
 router.get('/:url',
-    linksController.getLink,
-    filesController.deleteFile
+    linksController.hasPass,
+    linksController.getLink
+);
+
+router.post('/:url',
+    linksController.verifyPassword,
+    linksController.getLink
 );
 
 module.exports = router;

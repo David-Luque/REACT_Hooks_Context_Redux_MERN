@@ -10,11 +10,13 @@ exports.newLink = async (req, res, next)=>{
         return res.status(401).json({ errors: errors.array() })
     }
 
+    console.log("Sending this: ", req.body)
+
     //create new Link object
-    const { origin_name } = req.body;
+    const { origin_name, name } = req.body;
     const link = new Link();
     link.url = shortid.generate();
-    link.name = shortid.generate();
+    link.name = name;
     link.origin_name = origin_name;
     
 
@@ -42,6 +44,54 @@ exports.newLink = async (req, res, next)=>{
     }
 };
 
+
+//get all links
+exports.allLinks = async (req, res)=>{
+    try {
+        const links = await Link.find({}).select('url -_id');
+        res.json({ links });
+    } catch (error) {
+        console.log(error)
+    }
+};
+
+
+//return if link has password or not
+exports.hasPass = async (req, res, next)=>{
+    //verify if url exist
+    const link = await Link.findOne({ url: req.params.url })
+    if(!link) {
+        res.status(404).json({ msg: 'This link do not exist' });
+    }
+
+    if(link.password) {
+        return res.json({
+            password: true,
+            link: link.url
+        });
+    }
+
+    next();
+};
+
+//verify file password
+exports.verifyPassword = async (req, res, next)=>{
+    const { url } = req.params;
+    const { password } = req.body;
+    const link = await Link.findOne({ url });
+    console.log(link)
+    //verify password
+    const correctPass = bcrypt.compareSync(password, link.password);
+
+    if(correctPass) {
+        //download the file
+        next();
+    } else {
+        return res.status(401).json({ msg: 'Incorrect password' })
+    }
+};
+
+
 //get link
 exports.getLink = async (req, res, next)=>{
     //verify if url exist
@@ -50,22 +100,10 @@ exports.getLink = async (req, res, next)=>{
         res.status(404).json({ msg: 'This link do not exist' });
     }
     //if link exist
-    res.json({ file: link.name });
+    res.json({
+        file: link.name,
+        password: false
+    });
 
-    //check how many downloads remains
-    const { downloads, name } = link;
-
-    if(downloads === 1) {
-        //delete file
-        req.file = name;
-
-        //delete access from db
-        await Link.findOneAndRemove({ url: req.params.url })
-        
-        next();
-    } else {
-        //console.log('restar 1 a downloads')
-        link.downloads--;
-        await link.save();
-    }
+    next();
 };
