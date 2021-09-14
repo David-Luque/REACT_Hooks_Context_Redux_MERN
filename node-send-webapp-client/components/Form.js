@@ -18,7 +18,7 @@ const Form = () => {
                     className="appearance-none w-full mt-2 bg-white border border-gray-400 text-black py-3 px-4 pr-8 rounded leading-none focus:outline-none focus:border-gray-500"
                     onChange={e => editDownloads(parseInt(e.target.value))}
                 >
-                    <option value="" selected disabled>-- Select --</option>
+                    <option value="defaultValue disabled" >-- Select --</option>
                     <option value="1">1 download</option>
                     <option value="5">5 downloads</option>
                     <option value="10">10 downloads</option>

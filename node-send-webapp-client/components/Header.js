@@ -28,7 +28,7 @@ const Header = () => {
             />
             
             <div>
-                { authenticated ? (
+                { authenticated && user ? (
                     <div className="flex items-center">
                         <p className="mr-3">Hello {user.name}</p>
                         <button

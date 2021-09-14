@@ -72,7 +72,10 @@ const Dropzone = () => {
                     ) : (
                         <div className="text-center">
                             <p className="text-2xl text-center text-gray-600">Drag any file here</p>
-                            <button className="bg-blue-700 w-full py-3 rounded-lg text-white my-10 hover:bg-blue-800" type="button">
+                            <button 
+                                className="bg-blue-700 w-full py-3 rounded-lg text-white my-10 hover:bg-blue-800"
+                                type="button"
+                            >
                                 Select any file to upload
                             </button>
                         </div>

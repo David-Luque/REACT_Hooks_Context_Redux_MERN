@@ -1,6 +1,8 @@
 import Layout from "../../components/Layout";
 import axiosClient from '../../config/axios';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import appContext from "../../context/app/appContext";
+import Alert from '../../components/Alert';
 
 
 export async function getServerSideProps({ params }) {
@@ -23,14 +25,24 @@ export async function getServerSidePaths() {
 }
 
 const LinkPage = ({ link }) => {
+
+    const AppContext = useContext(appContext);
+    const { showAlert, message_file } = AppContext;
     
     const [ hassPassword, setHasPassword ] = useState(link.password);
+    const [ password, setPassword ] = useState('');
     
-    console.log(link)
-    
-    const verifyPassword = e => {
+    const verifyPassword = async e => {
         e.preventDefault();
-        console.log('verifying pass')
+        const data = { password };
+
+        try {
+            const result = await axiosClient.post(`/api/links/${link.link}`, data);
+            setHasPassword(result.data.password);
+        } catch (error) {
+            showAlert(error.response.data.msg)
+        }
+        
     };
     
     return (
@@ -38,6 +50,9 @@ const LinkPage = ({ link }) => {
             {hassPassword ? (
                 <>
                     <p className="text-center">This file require a password: </p>
+                    
+                    {message_file && <Alert/>}
+                    
                     <div className="flex justify-center mt-5">
                         <div className="w-full max-w-lg">
                             <form
@@ -55,6 +70,8 @@ const LinkPage = ({ link }) => {
                                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         id="password"
                                         placeholder="Link password"
+                                        value={password}
+                                        onChange={e => setPassword(e.target.value)}
                                     />
                                 </div>
 

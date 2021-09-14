@@ -23,8 +23,7 @@ const SignUp = () => {
             email: Yup.string().email('Email not valid').required('Email is required'),
             password: Yup.string().required('Password is required').min(6, 'Password must be at least 6 characters long')
         }),
-        onSubmit: (values)=>{
-            console.log(values)
+        onSubmit: values => {
             signUser(values);
         }
     });

@@ -76,8 +76,8 @@ const AuthState = ({ children }) => {
     const authUserLocal = async () => {
         const token = localStorage.getItem('NS_token');
         if(token) tokenAuth(token);
-        try {
-            const response = await axiosClient.get('/api/auth')
+        try { 
+            const response = await axiosClient.get('/api/auth');
             if(response.data.user) {
                dispatch({
                     type: AUTH_USER,

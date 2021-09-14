@@ -59,7 +59,6 @@ const AppState = ({ children }) => {
                 }
             });
         } catch (error) {
-            console.log(error)
             dispatch({
                 type: UPLOAD_FILE_FAILURE,
                 payload: error.response.data.msg
@@ -90,7 +89,6 @@ const AppState = ({ children }) => {
 
     //modify password
     const editPassword = password => {
-        console.log('password: ' + password);
         dispatch({
             type: ADD_PASSWORD,
             payload: password
