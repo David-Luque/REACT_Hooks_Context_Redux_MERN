@@ -5,15 +5,6 @@ import appContext from "../../context/app/appContext";
 import Alert from '../../components/Alert';
 
 
-export async function getServerSideProps({ params }) {
-    const { link } = params;
-    const result = await axiosClient.get(`/api/links/${link}`)
-    return {
-        props: {
-            link: result.data
-        }
-    }
-}
 export async function getServerSidePaths() {
     const links = await axiosClient.get('/api/links');
     return {
@@ -24,7 +15,19 @@ export async function getServerSidePaths() {
     }
 }
 
+export async function getServerSideProps({ params }) {
+    const { link } = params;
+    const result = await axiosClient.get(`/api/links/${link}`)
+    return {
+        props: {
+            link: result.data
+        }
+    }
+}
+
+
 const LinkPage = ({ link }) => {
+    console.log("Link prop: ", link)
 
     const AppContext = useContext(appContext);
     const { showAlert, message_file } = AppContext;
@@ -35,7 +38,6 @@ const LinkPage = ({ link }) => {
     const verifyPassword = async e => {
         e.preventDefault();
         const data = { password };
-
         try {
             const result = await axiosClient.post(`/api/links/${link.link}`, data);
             setHasPassword(result.data.password);
@@ -44,6 +46,8 @@ const LinkPage = ({ link }) => {
         }
         
     };
+
+
     
     return (
         <Layout>

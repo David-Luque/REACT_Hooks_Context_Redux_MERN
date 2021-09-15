@@ -2,7 +2,7 @@
 module.exports = {
   reactStrictMode: true,
   env: {
-    backendURL: "https://node-send-app-server.herokuapp.com/",
-    frontendURL: "https://node-send-webapp-client.vercel.app"
+    backendURL: "http://localhost:4000",
+    frontendURL: "http://localhost:3000"
   }
 }
