@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App/> Verify citas in DOM 1`] = `
+Array [
+  <div
+    class="cita"
+    data-testid="cita"
+  >
+    <p>
+      Mascota: 
+      <span>
+        Hook
+      </span>
+       
+    </p>
+    <p>
+      Dueño: 
+      <span>
+        David
+      </span>
+       
+    </p>
+    <p>
+      Fecha: 
+      <span>
+        2021-09-18
+      </span>
+       
+    </p>
+    <p>
+      Hora: 
+      <span>
+        09:25
+      </span>
+       
+    </p>
+    <p>
+      Sintomas: 
+      <span>
+        Low activity
+      </span>
+       
+    </p>
+    <button
+      class="button eliminar u-full-width"
+      data-testid="btn-delete"
+    >
+      Eliminar ×
+    </button>
+  </div>,
+]
+`;
+
+exports[`App/> Verify quotes in DOM 1`] = `
+Array [
+  <div
+    class="cita"
+    data-testid="cita"
+  >
+    <p>
+      Mascota: 
+      <span>
+        Hook
+      </span>
+       
+    </p>
+    <p>
+      Dueño: 
+      <span>
+        David
+      </span>
+       
+    </p>
+    <p>
+      Fecha: 
+      <span>
+        2021-09-18
+      </span>
+       
+    </p>
+    <p>
+      Hora: 
+      <span>
+        09:25
+      </span>
+       
+    </p>
+    <p>
+      Sintomas: 
+      <span>
+        Low activity
+      </span>
+       
+    </p>
+    <button
+      class="button eliminar u-full-width"
+    >
+      Eliminar ×
+    </button>
+  </div>,
+  <div
+    class="cita"
+    data-testid="cita"
+  >
+    <p>
+      Mascota: 
+      <span>
+        Hook2
+      </span>
+       
+    </p>
+    <p>
+      Dueño: 
+      <span>
+        David2
+      </span>
+       
+    </p>
+    <p>
+      Fecha: 
+      <span>
+        2021-09-18
+      </span>
+       
+    </p>
+    <p>
+      Hora: 
+      <span>
+        09:25
+      </span>
+       
+    </p>
+    <p>
+      Sintomas: 
+      <span>
+        Low activity
+      </span>
+       
+    </p>
+    <button
+      class="button eliminar u-full-width"
+    >
+      Eliminar ×
+    </button>
+  </div>,
+]
+`;
