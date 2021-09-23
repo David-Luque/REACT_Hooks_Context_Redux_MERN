@@ -83,7 +83,10 @@ const NewAccount = (props) => {
 
                 { alert 
                     ? (
-                        <div className={`alert ${alert.category}`}>
+                        <div 
+                            data-cy="alert"
+                            className={`alert ${alert.category}`}
+                        >
                             {alert.msg}
                         </div>
                     ) 

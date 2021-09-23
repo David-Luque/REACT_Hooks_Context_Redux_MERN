@@ -29,7 +29,6 @@ const AuthState = ({ children }) => {
     const registerUser = async data => {
         try {
             const response = await axiosClient.post('/api/users', data);
-            //console.log(response.data);
             dispatch({
                 type: SUCCESS_REGIST,
                 payload: response.data
@@ -38,10 +37,10 @@ const AuthState = ({ children }) => {
             authenticateUser();
         } catch (error) {
             console.log(error.response);
-            const alert = {
-                msg: error.response.data.msg,
-                category: 'alert-error'
-            }
+            // const alert = {
+            //     msg: error.response.data.msg,
+            //     category: 'alert-error'
+            // }
             dispatch({
                 type: FAILURE_REGIST,
                 payload: alert

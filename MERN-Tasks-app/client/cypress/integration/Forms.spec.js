@@ -7,7 +7,7 @@ describe('<Forms />', ()=>{
 
       //verify title
       //cy.contains('h1', 'Login'); => NOT recomended, not enough specific
-      cy.get('[data-cy="title"]')
+      cy.get('[data-cy="login-title"]')
         .invoke('text')
         .should('equal', 'Login')
 
