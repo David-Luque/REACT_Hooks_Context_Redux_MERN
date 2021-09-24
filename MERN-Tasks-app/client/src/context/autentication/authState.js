@@ -37,10 +37,10 @@ const AuthState = ({ children }) => {
             authenticateUser();
         } catch (error) {
             console.log(error.response);
-            // const alert = {
-            //     msg: error.response.data.msg,
-            //     category: 'alert-error'
-            // }
+            const alert = {
+                msg: error.response.data.msg,
+                category: 'alert-error'
+            }
             dispatch({
                 type: FAILURE_REGIST,
                 payload: alert
@@ -63,7 +63,6 @@ const AuthState = ({ children }) => {
                 payload: response.data.user
             });
         } catch (error) {
-            //console.log(error.response);
             dispatch({
                 type: FAILURE_LOGIN
             });
@@ -74,7 +73,6 @@ const AuthState = ({ children }) => {
     const sessionLogin = async data => {
         try {
             const response = await axiosClient.post('/api/auth', data);
-            //console.log(response)
             dispatch({
                 type: SUCCESS_LOGIN,
                 payload: response.data
@@ -82,7 +80,7 @@ const AuthState = ({ children }) => {
             //get user
             authenticateUser();
         } catch (error) {
-            //console.log(error.response);
+            console.log(error.response);
             let alert;
             if(error.response.data.msg) {
                 alert = {

@@ -54,5 +54,22 @@ describe('<NewAccount />', ()=>{
         // cy.get('[data-cy="login-title"]')
         //   .should('exist')
 
-    })
+    });
+
+    it('<NewAccount /> - Check for duplicate users', ()=>{
+        cy.visit('/new-account');
+
+        //form fill
+        cy.get('[data-cy="name-input"]').type('David')
+        cy.get('[data-cy="email-input"]').type('david@deibid.com')
+        cy.get('[data-cy="password-input"]').type('123qwe')
+        cy.get('[data-cy="second-password-input"]').type('123qwe')
+        //submit click
+        cy.get('[data-cy="signup-submit"]').click()
+
+        //check alert
+        cy.get('[data-cy="alert"]')
+        .should('exist')
+        .invoke('text').should('eq', 'User already exist')
+    });
 });

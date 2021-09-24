@@ -1,10 +1,9 @@
 import React, { useContext, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import AuthContext from '../../context/autentication/authContext';
+import { useHistory } from 'react-router-dom';
 
 
 const Header = () => {
-
     //extract authentication info
     const authContext = useContext(AuthContext);
     const { user, authenticateUser, closeSession } = authContext;
@@ -26,7 +25,7 @@ const Header = () => {
                     className="btn btn-blank close-session"
                     onClick={() => {
                         closeSession();
-                        history.push('/')
+                        history.push('/');
                     }}
                 >
                     Log out

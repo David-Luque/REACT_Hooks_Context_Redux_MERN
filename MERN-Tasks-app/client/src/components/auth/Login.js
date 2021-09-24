@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AlertContext from '../../context/alerts/alertContext';
 import AuthContext from '../../context/autentication/authContext';
+import Alert from '../layout/Alert';
 
 const Login = (props) => {
 
@@ -57,12 +58,11 @@ const Login = (props) => {
 
     return (
         <div className="form-user">
+
             <div className="container-form shadow-dark">
                 <h1 data-cy="login-title">Login</h1>
 
-                { alert ? (
-                    <div className={`alert ${alert.category}`}> {alert.msg} </div>
-                ) : null }
+                <Alert alert={alert} />
 
                 <form
                     data-cy="login-form"
