@@ -49,7 +49,23 @@ describe('Admin', ()=>{
         cy.get('[data-cy="submit-task"]').click()
     });
 
-    it('<ListTask /> - Complete/Uncomplete, Edit and Delete task', ()=>{
+    it('<ListTask /> - Complete/Incomplete, Edit and Delete task', ()=>{
+
+        // Select first task and check as complete
+        cy.get('[data-cy="task"]:nth-child(1) [data-cy="btn-task-incomplete"]').click()
+        cy.get('[data-cy="task"]:nth-child(1) [data-cy="btn-task-complete"]').should('have.class', 'complete')
+        // Select first task and check as incomplete
+        cy.get('[data-cy="task"]:nth-child(1) [data-cy="btn-task-complete"]').click()
+        cy.get('[data-cy="task"]:nth-child(1) [data-cy="btn-task-incomplete"]').should('have.class', 'incomplete')
+        //Edit task
+        cy.get('[data-cy="task"]:nth-child(1) [data-cy="btn-task-edit"]').click()
+        cy.get('[data-cy="input-task"]').clear().type('NEW TASK')
+        cy.get('[data-cy="submit-task"]').click()
+        
+        //Delete task
+        cy.get('[data-cy="task"]:nth-child(1) [data-cy="btn-task-delete"]').click()
+        cy.get('[data-cy="task"]:nth-child(1)')
+          .invoke('text').should('not.eq', 'NEW TASK')
 
     });
 });

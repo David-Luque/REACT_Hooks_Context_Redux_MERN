@@ -13,9 +13,9 @@ describe('<NewAccount />', ()=>{
 
         //form fill
         cy.get('[data-cy="name-input"]').type('David')
-        cy.get('[data-cy="email-input"]').type('david@deibid.com')
-        cy.get('[data-cy="password-input"]').type('123')
-        cy.get('[data-cy="second-password-input"]').type('123qwe')
+        cy.get('[data-cy="email-input"]').type('q@q.com')
+        cy.get('[data-cy="password-input"]').type('qqq')
+        cy.get('[data-cy="second-password-input"]').type('qqqqqq')
         //submit click
         cy.get('[data-cy="signup-submit"]').click()
         //check alert
@@ -29,7 +29,7 @@ describe('<NewAccount />', ()=>{
         //with ".type()" again, cypress add new text after the previous tipped text.
         //to clear input:
         cy.get('[data-cy="password-input"]')
-          .clear().type('123456')
+          .clear().type('wewewe')
         //submit click
         cy.get('[data-cy="signup-submit"]').click()
         //check alert
@@ -40,7 +40,7 @@ describe('<NewAccount />', ()=>{
 
         //fill form with correct passwords
         cy.get('[data-cy="second-password-input"]')
-          .clear().type('123456')
+          .clear().type('qqqqqq')
         //submit click
         cy.get('[data-cy="signup-submit"]').click()
 
@@ -61,9 +61,9 @@ describe('<NewAccount />', ()=>{
 
         //form fill
         cy.get('[data-cy="name-input"]').type('David')
-        cy.get('[data-cy="email-input"]').type('david@deibid.com')
-        cy.get('[data-cy="password-input"]').type('123qwe')
-        cy.get('[data-cy="second-password-input"]').type('123qwe')
+        cy.get('[data-cy="email-input"]').type('q@q.com')
+        cy.get('[data-cy="password-input"]').type('qqqqqq')
+        cy.get('[data-cy="second-password-input"]').type('qqqqqq')
         //submit click
         cy.get('[data-cy="signup-submit"]').click()
 
