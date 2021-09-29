@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { FirebaseContext } from '../firebase';
 
 const useProducts = (order) => {
@@ -22,6 +22,7 @@ const useProducts = (order) => {
         return {
             ...doc.data(),
             id: doc.id
+
         }
         });
         setProducts(products);

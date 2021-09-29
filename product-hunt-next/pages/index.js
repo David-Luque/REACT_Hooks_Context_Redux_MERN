@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../components/layout/Layout';
-//import ProductDetails from '../components/layout/ProductDetails';
+import ProductDetails from '../components/layout/ProductDetails';
 import useProducts from '../hooks/useProducts';
 import styled from '@emotion/styled';
 
@@ -21,12 +21,12 @@ export default function Home() {
               {products.map(product => {
                 console.log(product)
                 return (
-                  <p key={product.id}> product </p>
-                  
-                  // <ProductDetails
-                  //   key={product.id}
-                  //   product={product}
-                  // />
+                  <div key={product.id}>
+                    <p> Product </p>
+                    <ProductDetails
+                      product={product}
+                    />
+                  </div>
                 )
               })}
             </ul>

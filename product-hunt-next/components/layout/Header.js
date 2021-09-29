@@ -87,9 +87,6 @@ const Header = () => {
                             </Link>
                         </>
                     )}
-                    
-                    
-                    
                 </div>
             </ContainerHeader>
         </header>

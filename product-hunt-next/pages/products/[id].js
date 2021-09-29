@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+//import { es } from 'date-fns/locale';
 import Layout from '../../components/layout/Layout';
 import { FirebaseContext } from '../../firebase';
 import Error404 from '../../components/layout/404';
@@ -59,11 +59,9 @@ const Product = () => {
             };
             getProducts();
         }
-    }, [id, product]);
+    }, [id]);
 
-    if(Object.keys(product).length === 0 && !error) {
-        return "Loading..."
-    }
+    if(Object.keys(product).length === 0 && !error) return "Loading...";
 
     const { 
         comments, 
@@ -121,13 +119,13 @@ const Product = () => {
         e.preventDefault();
 
         if(!user) return router.push('/login');
-        if(Object.keys(comment).length === 0) return;
+        
+        //if(Object.keys(comment).length === 0) return;
 
         //info extra for comment
         comment.userId = user.uid;
         comment.userName = user.displayName;
-        //console.log(comment)
-
+        
         //get copy from product comments and add new comments to it
         const newComments = [...comments, comment];
 
@@ -148,19 +146,18 @@ const Product = () => {
 
     //check if comment was written by product owner
     const isOwner = id => {
-        if(owner.id === user.uid) {
+        if(owner.id == id) {
             return true
-        } else {
-            return false
         }
     };
 
-    //fuctionto check owner
+    //fuction to check owner
     const allowToRemove = ()=>{
         if(!user) return false;
         if(owner.id === user.uid) return true;
         return false;
     };
+
     //remove product from DB
     const removeProduct = async ()=>{
         if(!user) return router.push('/login');
@@ -191,7 +188,7 @@ const Product = () => {
                                 <div>
                                     <p>Published: {formatDistanceToNow(new Date(createdAt))}</p>
                                     {<p>By {owner.name} from: {enterprise}</p>}
-                                    <Image src={imageURL} alt={name}/>
+                                    <img src={imageURL} alt={name} />
                                     <p>{description}</p>
 
                                     { user && (

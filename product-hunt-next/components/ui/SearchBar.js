@@ -36,7 +36,7 @@ const SearchBar = () => {
     const searchProduct = e => {
         e.preventDefault();
         if(search.trim() === '') return;
-
+        
         //redirect user to "/search" page and send query to search component
         Router.push({
             pathname: '/search',

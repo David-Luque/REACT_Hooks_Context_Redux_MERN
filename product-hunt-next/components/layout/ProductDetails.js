@@ -3,11 +3,11 @@ import styled from '@emotion/styled';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 //import { es } from 'date-fns/locale';
 import Link from 'next/link';
-import Image from 'next/image';
+//import Image from 'next/image';
 
 
 
-const ImageStyled = styled(Image)`
+const ImageStyled = styled.img`
     width: 200px;
 `;
 
@@ -107,7 +107,7 @@ const ProductDetails = ({ product }) => {
         <Product>
             <ProductDescription>
                 <div>
-                    <Image src={imageURL} alt={name}/>
+                    <ImageStyled src={imageURL} alt={name} layout="fill"/>
                 </div>
                 <div>
                     <Link href="/products/[id]" as={`/products/${id}`}>
