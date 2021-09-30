@@ -2,11 +2,7 @@ import React from 'react';
 import Layout from '../components/layout/Layout';
 import ProductDetails from '../components/layout/ProductDetails';
 import useProducts from '../hooks/useProducts';
-import styled from '@emotion/styled';
 
-const Heading = styled.h1`
-  background-color: coral;
-`;
 
 export default function Home() {
 
@@ -19,14 +15,11 @@ export default function Home() {
           <div className="container">
             <ul className="bg-white">
               {products.map(product => {
-                console.log(product)
                 return (
-                  <div key={product.id}>
-                    <p> Product </p>
                     <ProductDetails
+                      key={product.id}
                       product={product}
                     />
-                  </div>
                 )
               })}
             </ul>

@@ -47,7 +47,6 @@ export default function NewProduct() {
 
   //context with firebase CRUD operations
   const { user, firebase } = useContext(FirebaseContext);
-  //console.log(user)
 
 
   async function createNewProduct() {

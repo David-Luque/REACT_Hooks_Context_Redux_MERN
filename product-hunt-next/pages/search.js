@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/layout/Layout';
-import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 import ProductDetails from '../components/layout/ProductDetails';
 import useProducts from '../hooks/useProducts';
 
 
-export default function Search() {
+const Search = () => {
   
   const router = useRouter();
   const { query: { q } } = router;
@@ -47,3 +46,5 @@ export default function Search() {
     </div>
   )
 }; 
+
+export default Search;

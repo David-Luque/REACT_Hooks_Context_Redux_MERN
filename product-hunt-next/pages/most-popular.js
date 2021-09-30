@@ -1,12 +1,8 @@
 import React from 'react';
 import Layout from '../components/layout/Layout';
 import ProductDetails from '../components/layout/ProductDetails';
-import styled from '@emotion/styled';
 import useProducts from '../hooks/useProducts';
 
-const Heading = styled.h1`
-  background-color: coral;
-`;
 
 export default function MostPopular() {
   

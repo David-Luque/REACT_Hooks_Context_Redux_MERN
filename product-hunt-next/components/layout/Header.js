@@ -24,7 +24,11 @@ const Logo = styled.a`
     line-height: 0;
     font-weight: 700;
     font-family: 'Roboto Slab', serif;
-    margin-right: 2rem; 
+    margin-right: 2rem;
+
+    &:hover {
+        cursor: pointer
+    }
 `;
 
 const Header = () => {
