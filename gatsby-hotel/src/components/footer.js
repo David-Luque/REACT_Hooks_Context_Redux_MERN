@@ -35,7 +35,6 @@ const Footer = ({ title, siteName }) => {
                         }
                     `}
                 >
-
                     <Nav/>
                     
                     <HomeLink to={'/'}>

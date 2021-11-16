@@ -48,9 +48,7 @@ const ImageHotel = () => {
                 } 
             }
         }
-    `)
-
-    //console.log(image.sharp.fluid)
+    `);
 
     const seo = useSEO();
     const { fallbackSeo: { title, description } } = seo;

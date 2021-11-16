@@ -1,4 +1,4 @@
-export default function validateCreateAccount(values) {
+export default function validateNewProduct(values) {
     let errors = {};
 
     //validate username

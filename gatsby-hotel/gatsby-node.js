@@ -9,10 +9,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
             }
         }
     `);
-    //console.log(result.data.allDatoCmsRoom.nodes)
 
     if(result.errors) {
-        reporter.panic('NOT RESULTS! ', result.errors)
+        reporter.panic('NO RESULTS ', result.errors)
     };
 
     //if pages => create files

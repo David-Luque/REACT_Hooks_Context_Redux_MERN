@@ -28,9 +28,7 @@ const useProducts = (order) => {
         setProducts(products);
     };
     
-    return {
-        products
-    } ;
+    return products;
 }
  
 export default useProducts;

@@ -7,6 +7,7 @@ import useProducts from '../hooks/useProducts';
 export default function Home() {
 
   const { products } = useProducts('createdAt');
+  console.log(products)
   
   return (
     <div>
