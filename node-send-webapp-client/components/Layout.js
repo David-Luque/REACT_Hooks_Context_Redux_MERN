@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
     return (
         <>
             <Head>
-                <title>NodeSend </title>
+                <title> NodeSend </title>
                 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
             </Head>
 

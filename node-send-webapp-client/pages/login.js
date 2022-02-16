@@ -10,31 +10,29 @@ import { useRouter } from 'next/router';
 const Login = () => {
 
     const AuthContext = useContext(authContext);
-    const { message, authenticated,  authUser } = AuthContext;
+    const { message, authenticated, authUser } = AuthContext;
 
     //next router
     const router = useRouter();
 
     useEffect(()=>{
-        if(authenticated) {
-            router.push('/');
-        }
+        if(authenticated) router.push('/');
     }, [authenticated]);
 
     //form and validation with formik and yup
-  const formik = useFormik({
-    initialValues: {
-        email: '',
-        password: ''
-    },
-    validationSchema: Yup.object({
-        email: Yup.string().email('Email not valid').required('Email is required'),
-        password: Yup.string().required('Password is required')
-    }),
-    onSubmit: values => {
-        authUser(values);
-    }
-  });
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: ''
+        },
+        validationSchema: Yup.object({
+            email: Yup.string().email('Email not valid').required('Email is required'),
+            password: Yup.string().required('Password is required')
+        }),
+        onSubmit: values => {
+            authUser(values);
+        }
+    });
 
   return (
     <div className="container">

@@ -51,7 +51,7 @@ const LinkPage = ({ link }) => {
     
     return (
         <Layout>
-            {hassPassword ? (
+            { hassPassword ? (
                 <>
                     <p className="text-center">This file require a password: </p>
                     

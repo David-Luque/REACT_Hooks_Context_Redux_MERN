@@ -19,14 +19,14 @@ const Index = () => {
   useEffect(()=>{
     const token = localStorage.getItem('NS_token');
     if(token) authUserLocal();
-  }, []);
+  });
 
  
   return (
     <div className="container">
       <Layout>
         <div className="md:4/5 xl:w3/5 mx-auto mb-32">
-          {url ? (
+          { url ? (
             <>
               <p className="text-center text-1xl mt-10">
                 <span className="font-bold text-red-700 text-2xl">
@@ -40,7 +40,6 @@ const Index = () => {
                 onClick={() => navigator.clipboard.writeText(`${process.env.frontendURL}/links/${url}`)}
               > Copy link </button>
             </>
-            
           ) : (
             <>
               {messsage_file && <Alert/>}
@@ -51,7 +50,10 @@ const Index = () => {
                     Easy and private file sharing
                   </h2>
                   <p className="text-lg leading-loose">
-                    <span className="text-red-500 font-bold">NodeSend</span> share end-to-end encrypted files. they will be deleted after downloads of your choice so they do not remain on the network.
+                    <span className="text-red-500 font-bold">
+                      NodeSend
+                    </span> 
+                    share end-to-end encrypted files. they will be deleted after downloads of your choice so they do not remain on the network.
                   </p>
                   <Link href="/signup">
                       <a className="text-red-500 font-bold text-lg hover:text-red-700">Create an account for extra benefits</a>

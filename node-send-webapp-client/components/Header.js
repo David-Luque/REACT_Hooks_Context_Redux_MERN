@@ -3,6 +3,7 @@ import Link from 'next/link';
 import authContext from '../context/auth/authContext';
 import appContext from '../context/app/appContext';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 const Header = () => {
     //routing
@@ -21,9 +22,9 @@ const Header = () => {
 
     return (
         <header className="py-8 flex flex-col md:flex-row items-center justify-between">
-            <img 
+            <Image 
                 className="w-64 mb-8 md:mb-0 cursor-pointer"
-                src="/logo.svg" alt="Home logo"
+                src="logo.svg" alt="Home logo"
                 onClick={() => redirect()}
             />
             
@@ -35,7 +36,7 @@ const Header = () => {
                             type="button"
                             className="bg-black px-5 py-3 rounded text-white font-bold uppercase"
                             onClick={() => signOut()}
-                        >Close sesison </button>
+                        > Close sesison </button>
                     </div>
                 ) : (
                     <>
