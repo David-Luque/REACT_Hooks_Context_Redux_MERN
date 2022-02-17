@@ -5,9 +5,9 @@ import {
     UPLOAD_FILE_SUCCESS,
     UPLOAD_FILE_FAILURE,
     CREATE_LINK_SUCCESS,
-    CREATE_LINK_FAILURE,
     ADD_PASSWORD,
-    EDIT_DOWNLOADS
+    EDIT_DOWNLOADS,
+    CLEAN_STATE
 } from '../../types';
 
 
@@ -52,6 +52,19 @@ const appReducer = (state, action)=>{
                 ...state,
                 downloads: action.payload
             }
+        case CLEAN_STATE:
+            return {
+                ...state,
+                message_file: null,
+                name: '',
+                origin_name: '',
+                loading: false,
+                downloads: 1,
+                password: '',
+                author: null,
+                url: ''
+            }
+
         default:
             return state;
     }
