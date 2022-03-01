@@ -5,10 +5,13 @@ import PatientList from './components/PatientList'
 function App() {
 
   return (
-    <div className="App">
+    <div className="container mx-auto mt-20">
       <Header />
-      <PatientList />
-      <Form />
+      <div className="mt-12 md:flex">
+        <PatientList />
+        <Form />
+      </div>
+      
     </div>
   )
 }
