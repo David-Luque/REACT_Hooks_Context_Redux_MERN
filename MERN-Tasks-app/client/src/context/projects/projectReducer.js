@@ -8,21 +8,18 @@ import {
     DELETE_PROJECT
 } from '../../types/index';
 
-export default (state, action) => {
+const ProjectReducer = (state, action) => {
     switch(action.type) {
         case NEW_PROJECT_FORM:
             return {
                 ...state,
                 form: true
             }
-        
         case OBTAIN_PROJECTS:
-            console.log(action.payload)
         return {
             ...state,
             projects: action.payload
         }
-
         case ADD_PROJECT:
             return {
                 ...state,
@@ -30,19 +27,16 @@ export default (state, action) => {
                 form: false,
                 formError: false
             }
-
         case VALIDATE_FORM:
             return {
                 ...state,
                 formError: true
             }
-
         case ACTUAL_PROJECT:
             return {
                 ...state,
                 project: state.projects.filter(project => project._id === action.payload)
             }
-
         case DELETE_PROJECT:
             return {
                 ...state,
@@ -54,8 +48,9 @@ export default (state, action) => {
                 ...state,
                 message: action.payload
             }
-
         default:
             return state;
     }
 }
+
+export default ProjectReducer;

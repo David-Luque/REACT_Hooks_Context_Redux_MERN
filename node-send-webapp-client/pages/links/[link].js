@@ -27,8 +27,6 @@ export async function getServerSideProps({ params }) {
 
 
 const LinkPage = ({ link }) => {
-    //console.log("Link prop: ", link)
-
     const AppContext = useContext(appContext);
     const { showAlert, message_file } = AppContext;
     
@@ -46,8 +44,6 @@ const LinkPage = ({ link }) => {
         }
         
     };
-
-
     
     return (
         <Layout>

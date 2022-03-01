@@ -11,9 +11,9 @@ exports.newLink = async (req, res, next)=>{
     }
 
     console.log("Sending this: ", req.body)
+    const { origin_name, name } = req.body;
 
     //create new Link object
-    const { origin_name, name } = req.body;
     const link = new Link();
     link.url = shortid.generate();
     link.name = name;
@@ -23,7 +23,7 @@ exports.newLink = async (req, res, next)=>{
     //if user is authenticated
     if(req.user) {
         const { downloads, password } = req.body;
-        //assign to link downloads number
+        //assign downloads number to link 
         if(downloads) link.downloads = downloads;
         //asign a password
         if(password) {
@@ -78,14 +78,13 @@ exports.hasPass = async (req, res, next)=>{
 
 //verify file password
 exports.verifyPassword = async (req, res, next)=>{
-    const { url } = req.params;
-    const { password } = req.body;
-    const link = await Link.findOne({ url });
+    const link = await Link.findOne({ url: req.params.url });
+    
     //verify password
+    const { password } = req.body;
     const correctPass = bcrypt.compareSync(password, link.password);
     if(correctPass) {
-        //download the file
-        next();
+        next(); // to download the file
     } else {
         return res.status(401).json({ msg: 'Incorrect password' })
     }
@@ -95,12 +94,12 @@ exports.verifyPassword = async (req, res, next)=>{
 //get link
 exports.getLink = async (req, res, next)=>{
     //verify if url exist
-    const { url } = req.params;
-    const link = await Link.findOne({ url });
+    const link = await Link.findOne({ url: req.params.url });
 
     if(!link) {
         res.status(404).json({ msg: 'This link do not exist' });
     }
+    
     //if link exist
     res.json({
         file: link.name,

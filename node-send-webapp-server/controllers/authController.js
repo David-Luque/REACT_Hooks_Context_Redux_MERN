@@ -15,29 +15,33 @@ exports.authenticateUser = async (req, res, next)=>{
 
     //find the user
     const user = await User.findOne({ email });
+    
+    //verify user
     if(!user) {
         res.status(401).json({ msg: "User do not exist" });
         return next();
     }
     
     //verify password
-    if(bcrypt.compareSync(password, user.password)) {
-        //--AUTH USER--
-        
-        // create JWT
-        const token = jwt.sign({
-            id: user._id,
-            name: user.name,
-            email: user.email
-        },process.env.SECRET, {
-            expiresIn: '8h'
-        });
-        res.json({ token });
-    
-    } else {
+    const isCorrectPass = bcrypt.compareSync(password, user.password);
+    if(!isCorrectPass) {
         res.status(400).json({ msg: "Incorrect password" });
         return next();
     }
+
+    //--AUTH USER--
+    //create payload
+    const payload = {
+        id: user._id,
+        name: user.name,
+        email: user.email
+    }
+    // create JWT
+    const token = jwt.sign(payload, process.env.SECRET, {
+        expiresIn: '8h'
+    });
+
+    res.json({ token });
 };
 
 exports.userAuthenticated = (req, res, next)=>{

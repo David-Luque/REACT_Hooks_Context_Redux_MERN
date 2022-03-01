@@ -43,8 +43,7 @@ const ProjectState = props => {
                 payload: results.data.projects
             })
         } catch (error) {
-            console.log(error);
-
+            //console.log(error.response);
             const alert = {
                 msg: 'There was an error',
                 category: 'alert-error'
@@ -61,15 +60,13 @@ const ProjectState = props => {
     const addProject = async project => {
         try {
             const result = await axiosClient.post('/api/projects', project);
-            //console.log(result)
             //insert project in state
             dispatch({
                 type: ADD_PROJECT,
                 payload: result.data
             });
         } catch (error) { 
-            console.log(error);
-
+            //console.log(error.response);
             const alert = {
                 msg: 'There was an error',
                 category: 'alert-error'
@@ -105,13 +102,8 @@ const ProjectState = props => {
                 type: DELETE_PROJECT,
                 payload: projectId
             })
-            dispatch({
-                type: DELETE_PROJECT,
-                payload: projectId
-            })
         } catch (error) {
-            console.log(error);
-
+            //console.log(error.response);
             const alert = {
                 msg: 'There was an error',
                 category: 'alert-error'

@@ -34,7 +34,7 @@ const TaskState = props => {
                 payload: result.data.tasks
             })
         } catch (error) {
-            console.log(error)
+            console.log(error.response)
         }
     };
 
@@ -50,7 +50,7 @@ const TaskState = props => {
             });
             
         } catch (error) {
-            
+            console.log(error.response)
         }
     };
 
@@ -64,7 +64,7 @@ const TaskState = props => {
     //delete task
     const deleteTask = async (id, project) => {
         try {
-            await axiosClient.delete(`/api/tasks/${id}`, {params: { project }});
+            await axiosClient.delete(`/api/tasks/${id}`, { params: { project }});
             dispatch({
                 type: DELETE_TASK,
                 payload: id
@@ -76,14 +76,12 @@ const TaskState = props => {
 
     //update completed task status
     const updateTask = async task => {
-        console.log('TASK TO UPDATE: ', task)
-        console.log('PATH: ', `/api/tasks/${task._id}`)
         try {
             const result = await axiosClient.put(`/api/tasks/${task._id}`, task);
-        dispatch({
-            type: UPDATE_TASK,
-            payload: result.data.task
-        }); 
+            dispatch({
+                type: UPDATE_TASK,
+                payload: result.data.task
+            }); 
         } catch (error) {
             console.log(error);
         }

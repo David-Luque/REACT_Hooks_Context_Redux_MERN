@@ -17,7 +17,7 @@ exports.createTask = async (req, res)=>{
         if(!projectFromDB) {
             return res.status(404).json({ msg: 'Project not found' })
         }
-        //verify project owner 
+        //verify project owner
         if(projectFromDB.owner.toString() !== req.user.id) {
             return res.status(401).json({ msg: 'Unauthorized' })
         }
@@ -59,9 +59,10 @@ exports.getTasks = async (req, res)=>{
 
 //update task
 exports.updateTask = async (req, res)=>{
+    
+    const { project, name, isCompleted } = req.body;
+    
     try {
-        const { project, name, isCompleted } = req.body;
-
         //check if task exist
         const taskInDB = await Task.findById(req.params.id);
         if(!taskInDB) {
@@ -78,8 +79,9 @@ exports.updateTask = async (req, res)=>{
         
         //create new task with new info
         const newTask = {};
-        newTask.name = name;
-        newTask.isCompleted = isCompleted;
+        if(name) newTask.name = name;
+        if(isCompleted) newTask.isCompleted = isCompleted;
+        
         //save task
         const task = await Task.findOneAndUpdate({_id: req.params.id}, newTask, { new: true });
         res.json({ task });
@@ -92,18 +94,19 @@ exports.updateTask = async (req, res)=>{
 
 //delete task
 exports.deleteTask = async (req, res)=>{
-    try {
-        const { project } = req.query;
+    
+    const { project } = req.query;
 
-        //check if task exist
+    try {
+        //get task from DB
         const taskInDB = await Task.findById(req.params.id);
+        //check if task exist
         if(!taskInDB) {
             return res.status(404).json({ msg: 'Task not found' })
         }
 
         //extract project
         const projectInDB = await Project.findById(project);
-        
         //verify project owner 
         if(projectInDB.owner.toString() !== req.user.id) {
             return res.status(401).json({ msg: 'Unauthorized' })
