@@ -1,10 +1,10 @@
 import Layout from '../components/Layout';
 
-export default function AboutUs() {
+export default function Store() {
     return (
-        <Layout page={"About us"}>
+        <Layout page={"Store"}>
             <div>
-                <h1>About Us</h1>
+                <h1>Virtual store</h1>
             </div> 
         </Layout>
     );

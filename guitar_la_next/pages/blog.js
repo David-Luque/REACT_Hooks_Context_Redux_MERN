@@ -1,10 +1,10 @@
 import Layout from '../components/Layout';
 
-export default function AboutUs() {
+export default function Blog() {
     return (
-        <Layout page={"About us"}>
+        <Layout page={"Blog"}>
             <div>
-                <h1>About Us</h1>
+                <h1>Blog</h1>
             </div> 
         </Layout>
     );
