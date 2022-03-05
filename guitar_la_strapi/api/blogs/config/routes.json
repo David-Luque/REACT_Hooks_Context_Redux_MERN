@@ -3,7 +3,7 @@
     {
       "method": "GET",
       "path": "/blogs",
-      "handler": "blog.find",
+      "handler": "blogs.find",
       "config": {
         "policies": []
       }
@@ -11,7 +11,7 @@
     {
       "method": "GET",
       "path": "/blogs/count",
-      "handler": "blog.count",
+      "handler": "blogs.count",
       "config": {
         "policies": []
       }
@@ -19,7 +19,7 @@
     {
       "method": "GET",
       "path": "/blogs/:id",
-      "handler": "blog.findOne",
+      "handler": "blogs.findOne",
       "config": {
         "policies": []
       }
@@ -27,7 +27,7 @@
     {
       "method": "POST",
       "path": "/blogs",
-      "handler": "blog.create",
+      "handler": "blogs.create",
       "config": {
         "policies": []
       }
@@ -35,7 +35,7 @@
     {
       "method": "PUT",
       "path": "/blogs/:id",
-      "handler": "blog.update",
+      "handler": "blogs.update",
       "config": {
         "policies": []
       }
@@ -43,7 +43,7 @@
     {
       "method": "DELETE",
       "path": "/blogs/:id",
-      "handler": "blog.delete",
+      "handler": "blogs.delete",
       "config": {
         "policies": []
       }

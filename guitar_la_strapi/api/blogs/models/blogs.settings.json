@@ -2,7 +2,7 @@
   "kind": "collectionType",
   "collectionName": "blogs",
   "info": {
-    "name": "Blog",
+    "name": "Blogs",
     "description": ""
   },
   "options": {
@@ -20,6 +20,10 @@
       "type": "string",
       "required": true
     },
+    "content": {
+      "type": "richtext",
+      "required": true
+    },
     "image": {
       "model": "file",
       "via": "related",
@@ -29,10 +33,6 @@
       "plugin": "upload",
       "required": true,
       "pluginOptions": {}
-    },
-    "content": {
-      "type": "richtext",
-      "required": true
     }
   }
 }
