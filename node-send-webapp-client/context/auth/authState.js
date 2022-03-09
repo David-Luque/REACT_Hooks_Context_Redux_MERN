@@ -35,6 +35,10 @@ const AuthState = ({ children }) => {
                 type: SIGNUP_SUCCESS,
                 payload: response.data.msg
             });
+            setTimeout(()=>{
+                authUser(data)
+            }, 2000);
+
         } catch (error) {
             dispatch({
                 type: SIGNUP_FAILURE,
@@ -79,7 +83,7 @@ const AuthState = ({ children }) => {
         try { 
             const response = await axiosClient.get('/api/auth');
             if(response.data.user) {
-               dispatch({
+                dispatch({
                     type: AUTH_USER,
                     payload: response.data.user
                 }); 

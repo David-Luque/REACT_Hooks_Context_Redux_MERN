@@ -21,11 +21,11 @@ const AppState = ({ children }) => {
         message_file: null,
         name: '',
         origin_name: '',
-        loading: false,
         downloads: 1,
         password: '',
         author: null,
-        url: ''
+        url: '',
+        loading: false,
     };
     const [ state, dispatch ] = useReducer(appReducer, initialState);
 
@@ -77,10 +77,10 @@ const AppState = ({ children }) => {
         }
 
         try {
-            const result = await axiosClient.post('/api/links', data);
+            const response = await axiosClient.post('/api/links', data);
             dispatch({
                 type: CREATE_LINK_SUCCESS,
-                payload: result.data.msg
+                payload: response.data.msg
             });
         } catch (error) {
             console.log(error)

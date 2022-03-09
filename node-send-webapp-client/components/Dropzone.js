@@ -10,14 +10,14 @@ const Dropzone = () => {
     const { showAlert, uploadFile, loading, createLink } = AppContext;
 
     const AuthContext = useContext(authContext);
-    const { authenticated, user } = AuthContext;
+    const { authenticated } = AuthContext;
 
 
     const onDropRejected = ()=>{
         showAlert('Cannot upload files more than 1MB. Create an account to upload larger files');
     };
 
-    const onDropAccepted = useCallback(async (acceptedFiles) => {
+    const onDropAccepted = useCallback(async acceptedFiles => {
         const formData = new FormData();
         formData.append('theFile', acceptedFiles[0]);
         

@@ -11,7 +11,7 @@ const Index = () => {
 
   //get auth user from localStorage
   const AuthContext = useContext(authContext);
-  const { authUserLocal } = AuthContext;
+  const { authUserLocal, authenticated } = AuthContext;
 
   const AppContext = useContext(appContext);
   const { messsage_file, url } = AppContext;
@@ -44,7 +44,9 @@ const Index = () => {
             <>
               {messsage_file && <Alert/>}
               <div className="lg:flex md:shadow-lg p-5 bg-white rounded-lg py-10">
+                
                 <Dropzone />
+                
                 <div className="md:flex-1 mb-3 mx-2 mt-16 lg:mt-0">
                   <h2 className="text-4xl font-sans font-bold text-gray-800 my-4">
                     Easy and private file sharing
@@ -55,9 +57,12 @@ const Index = () => {
                     </span> 
                     share end-to-end encrypted files. they will be deleted after downloads of your choice so they do not remain on the network.
                   </p>
-                  <Link href="/signup">
+
+                  { authenticated ? null : (
+                    <Link href="/signup">
                       <a className="text-red-500 font-bold text-lg hover:text-red-700">Create an account for extra benefits</a>
-                  </Link>
+                    </Link>
+                  ) }
                 </div>
               </div>
             </>
