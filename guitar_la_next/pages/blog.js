@@ -1,5 +1,7 @@
 import Layout from '../components/Layout';
 import Entry from '../components/Entry';
+import styles from '../styles/Blog.module.css';
+
 
 export async function getStaticProps() { //in this case, function "getServerSideProps , witch will be the function that we will use, is exactly the same. we need only change the name"
     const url = 'http://localhost:1337/blogs';
@@ -18,7 +20,7 @@ export default function Blog({ data }) {
         <Layout page={"Blog"}>
             <main className="container">
                 <h2 className="heading">Blog</h2>
-                <div>
+                <div className={styles.blog}>
                     {data.map(entry => (
                         <Entry key={entry.id} {...entry}/>
                     ))}
