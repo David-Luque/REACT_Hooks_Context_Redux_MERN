@@ -1,7 +1,7 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
 const useRooms = () => {
-    const data = useStaticQuery(graphql`
+    const response = useStaticQuery(graphql`
         query {
             allDatoCmsRoom {
                 nodes {
@@ -19,7 +19,7 @@ const useRooms = () => {
         }
     `);
     
-    return data.allDatoCmsRoom.nodes.map(room => ({
+    return response.allDatoCmsRoom.nodes.map(room => ({
         title: room.title,
         id: room.id,
         image: room.image,

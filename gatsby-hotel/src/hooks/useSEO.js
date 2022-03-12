@@ -1,7 +1,7 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
 const useSEO = () => {
-    const result = useStaticQuery(graphql`
+    const response = useStaticQuery(graphql`
         query {
             datoCmsSite {
                 globalSeo {
@@ -15,7 +15,7 @@ const useSEO = () => {
             }
         }
     `);
-    return result.datoCmsSite.globalSeo;
+    return response.datoCmsSite.globalSeo;
 }
  
 export default useSEO;

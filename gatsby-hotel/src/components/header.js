@@ -37,7 +37,6 @@ const Header = ({ siteName }) => {
                 </HomeLink>
                 
                 <Nav/>
-
             </div>
         </header>
     );

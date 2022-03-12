@@ -40,10 +40,7 @@ const IndexPage = () => {
 
     <RoomList>
       {rooms.map(room => (
-        <RoomPreview
-          key={room.id} 
-          roomInfo={room} 
-        />
+        <RoomPreview key={room.id} { ...room } />
       ))}
     </RoomList>
 

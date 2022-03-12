@@ -36,11 +36,9 @@ const Footer = ({ title, siteName }) => {
                     `}
                 >
                     <Nav/>
-                    
                     <HomeLink to={'/'}>
                         <h1> {siteName} </h1>
                     </HomeLink>
-
                 </div>
             </footer>
             <p
@@ -52,7 +50,7 @@ const Footer = ({ title, siteName }) => {
                     padding: 1rem;
 
                 `}
-            >{title} - All rights reserved&copy; - {year}</p>
+            > {title} - All rights reserved&copy; - {year}</p>
         </>
     );
 }

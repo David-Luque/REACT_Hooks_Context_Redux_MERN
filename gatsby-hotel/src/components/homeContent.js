@@ -56,7 +56,7 @@ const HomeContent = () => {
                 <Image fluid={image.fluid} />
             </HomeText>
         </>
-     );
+    );
 }
  
 export default HomeContent;

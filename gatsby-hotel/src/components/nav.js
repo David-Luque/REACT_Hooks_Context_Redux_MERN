@@ -34,14 +34,12 @@ const NavLink = styled(Link)`
 const Nav = ()=>{
     return (
         <Navigation>
-
             <NavLink to={'/'} activeClassName="actual-page"> 
                 Home 
             </NavLink>
             <NavLink to={'/aboutUs'} activeClassName="actual-page"> 
                 About Us 
             </NavLink>
-
         </Navigation>
     )
 };

@@ -4,7 +4,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
-const Button = styled(Link)`
+const ButtonLink = styled(Link)`
     margin-top: 2rem;
     padding: 1rem;
     background-color: rgba(44,62,80, .85);
@@ -17,10 +17,8 @@ const Button = styled(Link)`
     font-weight: 700;
 `;
 
-const RoomPreview = ({ roomInfo }) => {
-    
-    const { title, content, image, slug } = roomInfo;
-    
+const RoomPreview = (props) => {  //{ title, content, image, slug }
+    console.log(props)
     return (
         <div
             css={css`
@@ -40,7 +38,7 @@ const RoomPreview = ({ roomInfo }) => {
                `} 
                 > {title}  </h3>
                 <p>{content}</p>
-                <Button to={slug}> See room details </Button>
+                <ButtonLink to={slug}> See room details </ButtonLink>
             </div>
         </div>
     );

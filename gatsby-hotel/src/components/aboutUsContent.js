@@ -24,7 +24,7 @@ const Content = styled.main`
 
 
 const AboutUsContent = () => {
-    const result = useStaticQuery(graphql`
+    const response = useStaticQuery(graphql`
         query {
             allDatoCmsPage(filter: { slug: {eq: "about"} }) {
                 nodes {
@@ -40,7 +40,7 @@ const AboutUsContent = () => {
         }
     `);  
     
-    const { title, content, image } = result.allDatoCmsPage.nodes[0];
+    const { title, content, image } = response.allDatoCmsPage.nodes[0];
     
     
     return ( 

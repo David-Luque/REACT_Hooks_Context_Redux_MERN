@@ -48,7 +48,7 @@ const Layout = (props) => {
                         margin: 0;
                         padding: 0;
                     }
-                ` }
+                `}
             />
             <Helmet>
                 <title> {title} </title>
@@ -63,7 +63,7 @@ const Layout = (props) => {
                 siteName={siteName}
             />
 
-            {props.children}
+                {props.children}
             
             <Footer
                 title={title}

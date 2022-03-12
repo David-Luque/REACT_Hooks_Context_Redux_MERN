@@ -37,7 +37,6 @@ const TextImage = styled.div`
 `;
 
 const ImageHotel = () => {
-
     const { image } = useStaticQuery(graphql`
         query {
             image: file(relativePath: { eq: "8.jpg"} ) {
