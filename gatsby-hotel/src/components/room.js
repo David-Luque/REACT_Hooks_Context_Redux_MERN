@@ -4,7 +4,7 @@ import Image from 'gatsby-image';
 import { css } from '@emotion/react';
 import Layout from './layout';
 
-export const query = graphql`
+export const queryGQL = graphql`
     query($slug: String!) {
         allDatoCmsRoom(filter: { slug: {eq: $slug} }) {
             nodes {
@@ -22,9 +22,9 @@ export const query = graphql`
     }
 `;
 
-const RoomTemplate = ({ data: {allDatoCmsRoom: { nodes } } }) => {
-    
-    const { title, content, image, slug, id } = nodes[0]; 
+const RoomTemplate = ({ data: { allDatoCmsRoom: { nodes: [ roomData ]}}}) => {
+
+    const { title, content, image } = roomData; 
 
     return (
         <Layout>
@@ -42,12 +42,8 @@ const RoomTemplate = ({ data: {allDatoCmsRoom: { nodes } } }) => {
                     `}
                 >{title}</h1>
                 <p>{content}</p>
-                <Image
-                    fluid={image.fluid}
-                />
+                <Image fluid={image.fluid} />
             </main>
-            
-
         </Layout>
     );
 }

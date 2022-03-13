@@ -44,7 +44,7 @@ const ImageHotel = () => {
                     fluid {
                         ...GatsbyImageSharpFluid_withWebp
                     }
-                } 
+                }
             }
         }
     `);

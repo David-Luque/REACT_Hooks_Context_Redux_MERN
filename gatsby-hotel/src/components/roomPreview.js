@@ -17,8 +17,8 @@ const ButtonLink = styled(Link)`
     font-weight: 700;
 `;
 
-const RoomPreview = (props) => {  //{ title, content, image, slug }
-    console.log(props)
+
+const RoomPreview = ({ title, content, image, slug }) => {
     return (
         <div
             css={css`
@@ -44,4 +44,4 @@ const RoomPreview = (props) => {  //{ title, content, image, slug }
     );
 }
  
-export default RoomPreview;
+export default RoomPreview; 

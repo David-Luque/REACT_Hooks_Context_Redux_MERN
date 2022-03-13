@@ -22,7 +22,6 @@ const Content = styled.main`
 `;
 
 
-
 const AboutUsContent = () => {
     const response = useStaticQuery(graphql`
         query {
