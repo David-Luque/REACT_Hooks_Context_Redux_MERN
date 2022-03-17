@@ -1,8 +1,14 @@
+import Image from 'next/image';
+import Layout from "../../components/Layout";
+import { formatDate } from '../../helpers';
+import styles from '../../styles/Entry.module.css';
+
 //DINAMIC ROUTING WITH getServerSideProps() WAY
+
 // export async function getServerSideProps({ query: { id } }) { //this function receive automatically the query when access the dinamic route
 //     //console.log(id)
 
-//     const url = `http://localhost:1337/blogs/${id}`;
+//     const url = `${process.env.API_URL}/blogs/${id}`;
 //     const response = await fetch(url);
 //     const entry = await response.json();
 
@@ -28,7 +34,7 @@
 //with getStaticProps() on dinamic routing we need also getSatticPaths() function
 
 export async function getStaticPaths() {
-    const url = 'http://localhost:1337/blogs';
+    const url = `${process.env.API_URL}/blogs`;
     const response = await fetch(url);
     const entries = await response.json();
 
@@ -47,7 +53,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params: { id } }) { //this function receive automatically the query when access the dinamic route
     //console.log(id)
 
-    const url = `http://localhost:1337/blogs/${id}`;
+    const url = `${process.env.API_URL}/blogs/${id}`;
     const response = await fetch(url);
     const entry = await response.json();
 
@@ -58,11 +64,27 @@ export async function getStaticProps({ params: { id } }) { //this function recei
     };
 };
 
+
+
+
 export default function BlogEntry({ entry }) {
     //const router = useRouter();
-    //console.log(router.query) //to read query param from the URL. The key name is the same we set between brackets into [id].js file ("id" in this case)
-    console.log(entry)
+    //console.log(router.query) //=> to read query param from the URL. The key name is the same we set between brackets into [id].js file ("id" in this case)
+    
+    const { content, image, published_at, title } = entry;
+    
     return (
-       <h2>from entry blog</h2> 
+        <Layout>
+            <main className='container'>
+                <h1 className="heading">{title}</h1> 
+                <article className={styles.entry}>
+                    <Image layout="responsive" width={800} height={600} src={image.url} alt={`${entry.title} article image`}/>
+                    <div className={styles.content}>
+                        <p className={styles.date}> {formatDate(published_at)} </p>
+                        <p className={styles.text}> {content} </p>
+                    </div>
+                </article>
+            </main>
+        </Layout>
     );
 };

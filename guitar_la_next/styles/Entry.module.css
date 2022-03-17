@@ -41,3 +41,12 @@
     background-color: var(--primary);
     color: var(-white);
 }
+
+.entry {
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.text {
+    white-space: pre-wrap;
+}
