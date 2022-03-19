@@ -4,7 +4,7 @@ import { formatDate } from '../helpers';
 import styles from '../styles/Entry.module.css';
 
 
-export default function Entry({ title, resume, content, image, published_at, id }) {
+export default function Entry({ title, resume, image, published_at, id, url }) {
     return (
         <article>
             <Image priority='true' layout='responsive' width={800} height={600} src={image.url} alt={`${title} blog image`} />
@@ -12,7 +12,7 @@ export default function Entry({ title, resume, content, image, published_at, id 
                 <h3>{title}</h3> 
                 <p className={styles.date}>{ formatDate(published_at) }</p>
                 <p className={styles.resume}>{resume}</p>
-                <Link href={`/blog/${id}`}>
+                <Link href={`/blog/${url}`}>
                     <a className={styles.link}>
                         Read entry
                     </a>

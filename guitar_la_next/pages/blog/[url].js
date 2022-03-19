@@ -5,10 +5,10 @@ import styles from '../../styles/Entry.module.css';
 
 //DINAMIC ROUTING WITH getServerSideProps() WAY
 
-// export async function getServerSideProps({ query: { id } }) { //this function receive automatically the query when access the dinamic route
-//     //console.log(id)
+// export async function getServerSideProps({ query: { url } }) { //this function receive automatically the query when access the dinamic route
+//     //console.log(url)
 
-//     const url = `${process.env.API_URL}/blogs/${id}`;
+//     const url = `${process.env.API_URL}/blogs/${url}`;
 //     const response = await fetch(url);
 //     const entry = await response.json();
 
@@ -21,7 +21,7 @@ import styles from '../../styles/Entry.module.css';
 
 // export default function BlogEntry({ entry }) {
 //     //const router = useRouter();
-//     //console.log(router.query) //to read query param from the URL. The key name is the same we set between brackets into [id].js file ("id" in this case)
+//     //console.log(router.query) //to read query param from the URL. The key name is the same we set between brackets into [url].js file ("url" in this case)
 //     console.log(entry)
 //     return (
 //        <h2>from entry blog</h2> 
@@ -40,7 +40,7 @@ export async function getStaticPaths() {
 
     const paths = entries.map(entry => ({
         params: {
-            id: entry.id.toString()
+            url: entry.url
         }
     }));
 
@@ -50,16 +50,18 @@ export async function getStaticPaths() {
     }
 };
 
-export async function getStaticProps({ params: { id } }) { //this function receive automatically the query when access the dinamic route
-    //console.log(id)
+export async function getStaticProps({ params: { url } }) { //this function receive automatically the query when access the dinamic route
+    //console.log(url)
 
-    const url = `${process.env.API_URL}/blogs/${id}`;
-    const response = await fetch(url);
+    const baseUrl = `${process.env.API_URL}/blogs?url=${url}`;
+    const response = await fetch(baseUrl);
     const entry = await response.json();
+
+    console.log(entry)
 
     return {
         props: {
-            entry
+            entry: entry[0]
         }
     };
 };
@@ -72,9 +74,11 @@ export default function BlogEntry({ entry }) {
     //console.log(router.query) //=> to read query param from the URL. The key name is the same we set between brackets into [id].js file ("id" in this case)
     
     const { content, image, published_at, title } = entry;
+
+    console.log(entry)
     
     return (
-        <Layout>
+        <Layout page={title}>
             <main className='container'>
                 <h1 className="heading">{title}</h1> 
                 <article className={styles.entry}>
