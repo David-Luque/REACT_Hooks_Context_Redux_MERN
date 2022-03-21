@@ -82,9 +82,9 @@ const Header = () => {
                     ) : (
                         <>
                             <Link href="/login">
-                            <Button
-                                bgColor="true"
-                            >Login</Button>
+                                <Button
+                                    bgColor="true"
+                                >Login</Button>
                             </Link>
                             <Link href="/create-account">
                                 <Button>Sign up</Button>

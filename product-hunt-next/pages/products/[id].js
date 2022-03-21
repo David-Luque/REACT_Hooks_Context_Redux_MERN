@@ -187,7 +187,7 @@ const Product = () => {
                             <ProductContainer>
                                 <div>
                                     <p>Published: {formatDistanceToNow(new Date(createdAt))}</p>
-                                    {<p>By {owner.name} from: {enterprise}</p>}
+                                    <p>By {owner.name} from: {enterprise}</p>
                                     <img src={imageURL} alt={name} />
                                     <p>{description}</p>
 
@@ -198,11 +198,11 @@ const Product = () => {
                                                 onSubmit={addComment}
                                             >
                                                 <Field>
-                                                <input
-                                                    type="text"
-                                                    name="message"
-                                                    onChange={hadleCommentChange}
-                                                />
+                                                    <input
+                                                        type="text"
+                                                        name="message"
+                                                        onChange={hadleCommentChange}
+                                                    />
                                                 </Field>
                                                 <InputSubmit
                                                     type="submit"
@@ -275,11 +275,9 @@ const Product = () => {
                         </div>
                     )
                 }
-
-                
             </>
         </Layout>
-     );
+    );
 }
  
 export default Product;

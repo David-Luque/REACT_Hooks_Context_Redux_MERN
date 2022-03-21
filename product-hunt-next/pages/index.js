@@ -7,7 +7,6 @@ import useProducts from '../hooks/useProducts';
 export default function Home() {
 
   const { products } = useProducts('createdAt');
-  console.log(products)
   
   return (
     <div>
@@ -17,10 +16,10 @@ export default function Home() {
             <ul className="bg-white">
               {products.map(product => {
                 return (
-                    <ProductDetails
-                      key={product.id}
-                      product={product}
-                    />
+                  <ProductDetails
+                    key={product.id}
+                    {...product}
+                  />
                 )
               })}
             </ul>

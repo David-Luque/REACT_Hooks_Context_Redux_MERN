@@ -20,7 +20,9 @@ const Layout = props => {
                         box-sizing: border-box;
                     }
 
-                    *, *::before, *::after {
+                    *,
+                    *::before,
+                    *::after {
                         box-sizing: inherit;
                     } 
 

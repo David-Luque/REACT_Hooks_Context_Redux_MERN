@@ -3,11 +3,10 @@ import firebase, { FirebaseContext } from '../firebase';
 import useAuthentication from '../hooks/useAuthentication';
 
 function MyApp(props) {
-  const user = useAuthentication();
-  
   const { Component, pageProps } = props;
-  
-  return(
+  const user = useAuthentication();
+
+  return (
     <FirebaseContext.Provider
       value={{
         firebase,
@@ -18,5 +17,5 @@ function MyApp(props) {
     </FirebaseContext.Provider>
   )
 }
-
-export default MyApp;
+  
+  export default MyApp;
