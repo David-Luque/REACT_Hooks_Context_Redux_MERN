@@ -13,7 +13,7 @@ const useValidation = (initialState, validation, fn) => {
 
             setSubmitForm(false);
         }
-    }, [errors]);
+    }, [errors, submitForm]);
 
     const handleChange = e => {
         setValues({

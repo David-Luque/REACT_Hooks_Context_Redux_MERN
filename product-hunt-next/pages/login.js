@@ -51,40 +51,42 @@ export default function Login() {
               `}
             >Login</h1>
             
+            { error && <Error>{ error }</Error> }
+
             <Form
               onSubmit={handleSubmit}
             >
-                <Field>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="Your email"
-                        name="email"
-                        value={email}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
-                </Field>
-                { errors.email && <Error>{errors.email}</Error> }
+              <Field>
+                  <label htmlFor="email">Email</label>
+                  <input
+                      type="email"
+                      id="email"
+                      placeholder="Your email"
+                      name="email"
+                      value={email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                  />
+              </Field>
+              { errors.email && <Error>{errors.email}</Error> }
 
-                <Field>
-                    <label htmlFor="password">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="Your password"
-                        name="password"
-                        value={password}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
-                </Field>
-                { errors.password && <Error>{errors.password}</Error> }
+              <Field>
+                  <label htmlFor="password">Password</label>
+                  <input
+                      type="password"
+                      id="password"
+                      placeholder="Your password"
+                      name="password"
+                      value={password}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                  />
+              </Field>
+              { errors.password && <Error>{errors.password}</Error> }
 
-                { error && <Error>{ error }</Error> }
+              
 
-                <InputSubmit type="submit" value="Login"/>
+              <InputSubmit type="submit" value="Login"/>
             
             </Form>
         </>

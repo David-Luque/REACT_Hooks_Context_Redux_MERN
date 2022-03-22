@@ -210,11 +210,14 @@ const Product = () => {
                                                 />
                                             </form>
                                         </>
-                                    ) }
+                                    )}
 
-                                    <h2 css={css`margin: 2rem 0;`}> Comments </h2>
+                                    <h2 
+                                        css={css`margin: 2rem 0;`}
+                                    > Comments </h2>
+
                                     {comments.length === 0 ? 'No comments yet' : (
-                                    <ul>
+                                        <ul>
                                             {comments.map((comment, i) => (
                                                 <li 
                                                     key={`${comment.userId}-${i}`}

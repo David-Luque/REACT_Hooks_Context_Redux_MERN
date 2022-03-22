@@ -36,7 +36,7 @@ const Search = () => {
               {searchResult.map(product => (
                 <ProductDetails
                   key={product.id}
-                  product={product}
+                  {...product}
                 />
               ))}
             </ul>

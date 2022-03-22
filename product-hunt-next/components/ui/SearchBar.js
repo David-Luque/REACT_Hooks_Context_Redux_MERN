@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import Router from 'next/router'; //better than import { router } because we need to pass some values
+import Router from 'next/router'; //better than import { useRouter } because we need to pass some values
 
 const InputText = styled.input`
     border: 1px solid var(--grey3);

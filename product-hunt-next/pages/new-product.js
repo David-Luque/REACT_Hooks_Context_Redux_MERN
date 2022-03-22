@@ -93,15 +93,11 @@ export default function NewProduct() {
     setProgress(100);
     setUpload(false);
     setImageName(name);
-    firebase
-      .storage
-        .ref('products')
-        .child(name)
-        .getDownloadURL()
-        .then(url => {
-          console.log(url);
-          setImageURL(url);
-        })
+    firebase.storage.ref('products').child(name).getDownloadURL()
+      .then(url => {
+        console.log(url);
+        setImageURL(url);
+      })
   };
 
 
@@ -117,6 +113,8 @@ export default function NewProduct() {
               `}
             >Create new product</h1>
             
+            { error && <Error>{ error }</Error> }
+
             <Form
               onSubmit={handleSubmit}
             >
@@ -151,7 +149,7 @@ export default function NewProduct() {
                 { errors.enterprise && <Error>{errors.enterprise}</Error> }
 
                 <Field>
-                    <label htmlFor="image">Image</label>
+                    <label>Image</label>
                     <FileUploader
                       accept="image/*"
                       id="image"
@@ -199,10 +197,7 @@ export default function NewProduct() {
                 { errors.description && <Error>{errors.description}</Error> }
               </fieldset>
 
-                { error && <Error>{ error }</Error> }
-
-                <InputSubmit type="submit" value="Create product"/>
-            
+              <InputSubmit type="submit" value="Create product"/>
             </Form>
           </>
         )}
