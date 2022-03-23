@@ -1,13 +1,13 @@
-import GuitarView from '../components/GuitarView';
+import GuitarItem from './GuitarItem';
+import styles from '../styles/GuitarList.module.css';
 
 export default function GuitarList({ guitars }) {
 
     return(
-        <>
-            <h2>Guitar listing</h2>
-            <div>
+        <> 
+            <div className={styles.list}>
                 {guitars.map(guitar => (
-                    <GuitarView key={guitar.id} {...guitar} />
+                    <GuitarItem key={guitar.id} {...guitar} />
                 ))}
             </div>
         </>

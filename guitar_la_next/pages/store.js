@@ -2,7 +2,7 @@ import Layout from '../components/Layout';
 import GuitarList from '../components/GuitarList';
 
 export async function getServerSideProps() { // we cannot use this function (and getStaticProps) on component file, only on page file
-    const url = `${process.env.API_URL}/guitars`;
+    const url = `${process.env.API_URL}/guitars?_sort=price:asc`;
     const response = await fetch(url);
     const guitars = await response.json();
 

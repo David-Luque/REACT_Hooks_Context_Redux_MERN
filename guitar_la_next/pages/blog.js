@@ -4,7 +4,7 @@ import styles from '../styles/Blog.module.css';
 
 
 export async function getStaticProps() { //in this case, function "getServerSideProps , witch will be the function that we will use, is exactly the same. we need only change the name"
-    const url = `${process.env.API_URL}/blogs`;
+    const url = `${process.env.API_URL}/blogs?_sort=createdAt:desc`;
     const response = await fetch(url);
     const data = await response.json();
     return {
