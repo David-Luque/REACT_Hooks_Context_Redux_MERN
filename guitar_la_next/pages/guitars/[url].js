@@ -20,6 +20,22 @@ export default function GuitarProduct({ guitarData }) {
                     <p className={styles.price}>
                         ${price}
                     </p>
+
+                    <form className={styles.form}>
+                        <label>Quantity:</label>
+                        <select>
+                            <option value="">-- Select quantity --</option>
+                            <option value="1"> 1 </option>
+                            <option value="2"> 2 </option>
+                            <option value="3"> 3 </option>
+                            <option value="4"> 4 </option>
+                            <option value="5"> 5 </option>
+                        </select>
+                        <input
+                            type="submit"
+                            value="Add to cart"
+                        />
+                    </form>
                 </div>
             </div>
         </Layout>

@@ -50,3 +50,34 @@
     background-color: var(--primary);
     color: var(-white);
 }
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form label {
+    font-size: 2.2rem;
+}
+
+.form select {
+    border: 2px solid var(--primary);
+    text-align: center;
+    padding: .5rem;
+}
+.form input[type="submit"] {
+    margin-top: 2rem;
+    display: block;
+    background-color: var(--primary);
+    text-transform: uppercase;
+    padding: 1.5rem 2rem;
+    border: none;
+    color: var(--white);
+    font-weight: 700;
+    transition: background-color .3s;
+}
+
+.form input[type="submit"]:hover {
+    background-color: var(--black);
+    cursor: pointer;
+}
