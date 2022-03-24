@@ -26,6 +26,7 @@ const useHome = () => {
             }
         `
     );
+    
     return result.allStrapiPages.nodes.map(home => ({
         name: home.name,
         content: home.content,

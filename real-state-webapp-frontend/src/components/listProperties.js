@@ -38,7 +38,7 @@ const ListProperties = () => {
                 {filterProperties.map(property => (
                     <PropertyPreview
                         key={property.id}
-                        propertyData={property}
+                        {...property}
                     />
                 ))}
             </ul>
