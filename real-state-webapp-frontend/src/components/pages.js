@@ -40,8 +40,6 @@ export const query = graphql`
 `;
 
 const Pages = ({ data: { allStrapiPages: { nodes } } }) => {
-
-    console.log(nodes)
     const { name, content, image } = nodes[0];
     
     return ( 

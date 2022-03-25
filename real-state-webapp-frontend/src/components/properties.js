@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { css } from '@emotion/core'
 import Image from 'gatsby-image';
 import Icons from './icons';
 import Layout from './layout';
@@ -68,7 +69,7 @@ export const query = graphql`
     }
 `;
 
-const Properties = ({ data: { allStrapiProperties: { edges } } }) => {
+const Properties = ({ data: { allStrapiProperties: { edges } } }) => { // => the result of request above is automatically passed to the component throught "data" variable
     //console.log(edges)
     const { node: { 
         name,
@@ -80,12 +81,16 @@ const Properties = ({ data: { allStrapiProperties: { edges } } }) => {
         image,
         price
      } } = edges[0]
-
-     console.log(image)
+    //console.log(image)
     
     return ( 
         <Layout>
-            <h1>{name}</h1>
+            <h1
+                css={css`
+                    magin: 3rem auto 2rem auto;
+                `}
+            > {name}</h1>
+            
             <Content>
                 <main>
                     <Image fluid={image.localFile.sharp.fluid} />

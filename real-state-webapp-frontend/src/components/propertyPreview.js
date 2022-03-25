@@ -47,7 +47,7 @@ const Button = styled(Link)`
 `;
 
 
-const PropertyPreview = ({ name, image, wc, parking, rooms, price }) => {
+const PropertyPreview = ({ image, name, price, wc, parking, rooms }) => {
 
     return ( 
         <Card>
@@ -66,7 +66,6 @@ const PropertyPreview = ({ name, image, wc, parking, rooms, price }) => {
                 <Button to={urlSlug(name)}>
                     Visit property
                 </Button>
-
             </Content>
         </Card>
     );
