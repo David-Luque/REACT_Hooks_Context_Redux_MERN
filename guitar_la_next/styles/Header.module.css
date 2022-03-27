@@ -5,7 +5,7 @@
     background-size: cover;
     background-position: 50%;
     padding: 5rem 0;
-
+    position: relative;
 }
 
 .navbar {
@@ -24,6 +24,8 @@
     margin-top: 5rem;
     display: flex;
     gap: 2rem;
+    position: relative;
+    z-index: 10;
 }
 @media(min-width: 768px) {
     .navigation {
@@ -42,4 +44,67 @@
 
 .navigation a:hover {
     color: var(--primary);
+}
+
+.guitar_header {
+    color: var(--white);
+    margin-top: 5rem;
+    text-align: center;
+}
+@media(min-width: 768px) {
+    .guitar_header {
+        text-align: left;
+        width: 50%;
+    }
+
+}
+
+.guitar_header h2 {
+    font-size: 8rem;
+}
+
+.guitar_header p:first-of-type {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    font-size: 2,2rem;
+}
+
+.price {
+    font-size: 6rem;
+    color: var(--primary);
+    font-weight: 900;
+    line-height: 0;
+}
+
+.link {
+    margin-top: 2rem;
+    padding: 1rem 5rem;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--white);
+    border: 2px solid var(--primary);
+
+    transition-property: background-color;
+    transition-duration: .2s;
+}
+.link:hover {
+    background-color: var(--primary);
+    color: var(-white);
+}
+
+.guitar_img {
+    display: none;
+}
+@media(min-width: 992px) {
+    .guitar_img {
+        display: block;
+        position: absolute;
+        bottom: -8px;
+        right: 0;
+    }
 }

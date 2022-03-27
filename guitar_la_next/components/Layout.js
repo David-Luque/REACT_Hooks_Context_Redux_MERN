@@ -2,7 +2,8 @@ import Head from 'next/head';
 import Header from './Header';
 import Footer from './Footer';
 
-export default function Layout({ children, page }) {
+export default function Layout({ children, page, guitar }) {
+    console.log(guitar)
     return (
         <>
             <Head>
@@ -14,7 +15,7 @@ export default function Layout({ children, page }) {
                 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet"/>
             </Head>
 
-            <Header/>
+            <Header guitar={guitar} />
 
             {children}
 
@@ -22,3 +23,7 @@ export default function Layout({ children, page }) {
         </>
     );
 }; 
+
+Layout.defaultProps = {
+    guitar: null
+} 
