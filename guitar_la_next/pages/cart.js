@@ -1,7 +1,10 @@
 import Layout from "../components/Layout";
 import styles from '../styles/Cart.module.css'
 
-export default function Cart() {
+export default function Cart({ cart }) {
+
+    console.log(cart)
+
     return (
         <Layout page={"Shop cart"}>
             <h1 className="heading">
