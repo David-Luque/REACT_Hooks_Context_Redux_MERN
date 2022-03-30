@@ -32,11 +32,30 @@ function MyApp({ Component, pageProps }) {
     }
   };
 
+  const updateQuantity = product => {
+    const updatedCart = cart.map(item => {
+      if(item.id === product.id) {
+        item.quantity = product.quantity;
+      }
+      return item;
+    });
+    setCart(updatedCart);
+  };
+
+  const removeProduct = id => {
+    const updatedCart = cart.filter(item =>  item.id !== id)
+    setCart(updatedCart)
+  };
+
+
+
   //finally we pass the props to "Component"
   return <Component 
     {...pageProps} 
     cart={cart}  
     addToCart={addToCart}
+    updateQuantity={updateQuantity}
+    removeProduct={removeProduct}
   />
 }
 
