@@ -21,10 +21,18 @@ img {
 }
 
 [class*="container"] {
-  max-width: 120rem;
+  max-width: 135rem;
   margin: 0 auto;
   width: 95%;
+  padding: 0 2rem 0 2rem;
 }
+
+/* @media(max-width: 1440px) {
+  [class*="container"] {
+    max-width: 135rem;
+  }
+} */
+
 [class*="heading"] {
   font-size: 4rem;
   text-align: center;

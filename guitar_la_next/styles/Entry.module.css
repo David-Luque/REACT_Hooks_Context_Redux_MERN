@@ -10,6 +10,11 @@
     line-height: 1.2;;
 }
 
+.content h3,
+.img {
+    cursor: pointer;
+}
+
 .date {
     font-size: 1.6rem;
     color: var(--primary);
