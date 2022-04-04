@@ -50,7 +50,7 @@ const Products = () => {
                         products.map(product => (
                             <Product 
                                 key={product.id} 
-                                productInfo={product}
+                                {...product}
                             />
                         ))
                     ) }

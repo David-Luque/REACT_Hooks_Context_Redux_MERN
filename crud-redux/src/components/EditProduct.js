@@ -12,9 +12,9 @@ const EditProduct = () => {
 
     const history = useHistory();
     const dispatch = useDispatch();
+    
     //PRODUCT TO EDIT
     const productToEdit = useSelector(state => state.products.editProduct);
-    //console.log(product)
 
     // FILL PRODUCT IN STATE
     useEffect(()=>{

@@ -46,7 +46,6 @@ export function createNewProductAction(product) {
         }
     };
 };
-
 const addProduct = ()=>({
     type: ADD_PRODUCT,
     payload: true
@@ -77,7 +76,6 @@ export function getProductsAction() {
         }
     };
 };
-
 const downloadProducts = () => ({
     type: START_GET_PRODUCTS,
     payload: true
@@ -112,7 +110,6 @@ export function deleteProductAction(id) {
         }
     };
 };
-
 const getDeleteProduct = id => ({
     type: GET_DELETE_PRODUCT,
     payload: id
@@ -132,7 +129,6 @@ export function getProductEdit(product) {
         dispatch(getProductAction(product));
     };
 };
-
 const getProductAction = product => ({
     type: GET_EDIT_PRODUCT,
     payload: product
@@ -152,7 +148,6 @@ export function editProductAction(product) {
         }
     };
 }; 
-
 const editProduct = () => ({
     type: START_EDIT_PRODUCT //nothing change, this type has only describing purpose
 });

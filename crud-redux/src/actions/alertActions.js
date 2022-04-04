@@ -3,7 +3,7 @@ import {
     HIDE_ALERT
 } from '../types';
 
-//AHOW ALERT
+//SHOW ALERT
 export function showAlertAction(alert) {
     return (dispatch)=>{
         dispatch(createAlert(alert))

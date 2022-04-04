@@ -6,7 +6,7 @@ import { createNewProductAction } from '../actions/productActions';
 import { showAlertAction, hideAlertAction } from '../actions/alertActions';
 
 
-const NewProduct = ({history}) => {
+const NewProduct = ({ history }) => {
     //component local state
     const [name, setName] = useState('');
     const [price, setPrice] = useState(0);
@@ -18,6 +18,7 @@ const NewProduct = ({history}) => {
     const loading = useSelector( state => state.products.loading )
     const error = useSelector(state => state.products.error);
     const alert = useSelector(state => state.alerts.alert)
+    
     //productAction's action call 
     const addProduct = product => dispatch(createNewProductAction(product));
 

@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';
 import { deleteProductAction, getProductEdit } from '../actions/productActions';
 
-const Product = ({ productInfo }) => {
+const Product = ({ name, price, id }) => {
 
     const dispatch = useDispatch();
     const history = useHistory(); //enable history to redirect
@@ -31,8 +31,6 @@ const Product = ({ productInfo }) => {
         })
     };
 
-    const { name, price, id } = productInfo;
-
     //function to redirect to edit
     const redirectEdit = product => {
         dispatch(getProductEdit(product))
@@ -47,7 +45,7 @@ const Product = ({ productInfo }) => {
                 <button
                     type="button"
                     className="btn btn-primary mr-2"
-                    onClick={()=>{redirectEdit(productInfo)}}
+                    onClick={ ()=> redirectEdit({ name, price, id }) }
                 >
                     Edit
                 </button>
