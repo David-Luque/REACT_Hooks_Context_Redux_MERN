@@ -59,6 +59,5 @@ export default function Login() {
                 </Link>
             </nav>
         </>
-       
     )
 };

@@ -4,7 +4,7 @@ import ForgetPass from './pages/ForgetPass';
 import Login from './pages/Login';
 import NewPass from './pages/NewPass';
 import SignUp from './pages/SignUp';
-import ConfimrAccount from './pages/ConfimrAccount';
+import ConfirmAccount from './pages/ConfirmAccount';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
           <Route path="signup" element={<SignUp/>}/>
           <Route path="forget-pass" element={<ForgetPass/>} />
           <Route path="forget-pass/:token" element={< NewPass/>} />
-          <Route path="confirm-account/:id" element={<ConfimrAccount />} />
+          <Route path="confirm-account/:id" element={<ConfirmAccount />} />
         </Route>
       </Routes>
     </BrowserRouter>
