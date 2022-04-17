@@ -1,6 +1,58 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Alert from '../components/Alert';
+import axios from 'axios';
 
 export default function SignUp() {
+
+    const [ name, setName ] = useState('');
+    const [ email, setEmail ] = useState('');
+    const [ password, setPassword ] = useState('');
+    const [ repeatPass, setRepeatPass ] = useState('');
+    const [ alert, setAlert ] = useState({});
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+
+        if([ name, email, password, repeatPass ].includes('')) {
+            setAlert({
+                msg: 'All fields are required',
+                error: true
+            });
+            return;
+        }
+
+        if(password.length < 6) {
+            setAlert({
+                msg: 'Passwords must have at least 6 characters',
+                error: true
+            });
+            return;
+        };
+
+        if(password !== repeatPass) {
+            setAlert({
+                msg: 'Passwords must be identical',
+                error: true
+            });
+            return;
+        };
+
+        setAlert({});
+
+        //Create user on API
+        try {
+            const response = await axios.post('http://localhost/4000/api/users', { name, email, password });
+            console.log(response);
+        } catch(error) {
+            console.log(error)
+        }
+        
+    };
+
+    const { msg } = alert;
+
+
     return (
         <>
             <h1 className="text-sky-600 font-black text-6xl">
@@ -8,7 +60,12 @@ export default function SignUp() {
                 <span className="text-slate-700">projects</span>
             </h1>
 
-            <form className="my-10 bg-white shadow rounded-lg p-10">
+            { msg && <Alert {...alert} /> }
+
+            <form 
+                className="my-10 bg-white shadow rounded-lg p-10"
+                onSubmit={handleSubmit}
+            >
                 <div className="my-5">
                     <label 
                         className="uppercase text-gray-600 block text-xl font-bold"
@@ -20,7 +77,9 @@ export default function SignUp() {
                         type="text"
                         name="name"
                         placeholder="Your name here"
-                        className="w-full mt-3 p-3 border rounded-xl bg-gray-50 "
+                        className="w-full mt-3 p-3 border rounded-xl bg-gray-50"
+                        value={name}
+                        onChange={e => setName(e.target.value)}
                     />
                 </div>
                 <div className="my-5">
@@ -34,7 +93,9 @@ export default function SignUp() {
                         type="email"
                         name="email"
                         placeholder="Your email here"
-                        className="w-full mt-3 p-3 border rounded-xl bg-gray-50 "
+                        className="w-full mt-3 p-3 border rounded-xl bg-gray-50"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
                     />
                 </div>
                 <div className="my-5">
@@ -48,21 +109,25 @@ export default function SignUp() {
                         type="password"
                         name="password"
                         placeholder="Your password here"
-                        className="w-full mt-3 p-3 border rounded-xl bg-gray-50 "
+                        className="w-full mt-3 p-3 border rounded-xl bg-gray-50"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
                     />
                 </div>
                 <div className="my-5">
                     <label 
                         className="uppercase text-gray-600 block text-xl font-bold"
-                        htmlFor="password2"
+                        htmlFor="repeatPass"
                     > Repeat password
                     </label>
                     <input
-                        id="password2"
+                        id="repeatPass"
                         type="password"
-                        name="password2"
+                        name="repeatPass"
                         placeholder="Repeat your password here"
-                        className="w-full mt-3 p-3 border rounded-xl bg-gray-50 "
+                        className="w-full mt-3 p-3 border rounded-xl bg-gray-50"
+                        value={repeatPass}
+                        onChange={e => setRepeatPass(e.target.value)}
                     />
                 </div>
                 <input 
